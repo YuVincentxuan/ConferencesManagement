@@ -1,0 +1,29 @@
+@font-face {font-family: "iconfont";
+  src: url('./iconfont/iconfont.eot?t=1551264567539'); /* IE9 */
+  src: url('./iconfont/iconfont.eot?t=1551264567539#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAARcAAsAAAAACWAAAAQQAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDHAqGEIUwATYCJAMQCwoABCAFhG0HVBsuCMgehXEbfVKqr76VKqzx0HOlf3YmuemyW/NCeQE8WizwdZC3JiUv+Ars3+dmL0LJJkDV/po6sutQ+hOsDRNS8XTFj1ATP62In+3YcxsgQGDv/xwzXT6fDfPbbC5ZRRsV2Chap52XeHRkN2E8DfFqOpC3+YWvCWAszjLE5cAxPTBo7qEA4tsuWICpqNADuMBI/TpuFhC/oMI0d8nnwE/y+mjhFAPQUCW433p43Z8Iu9rivzWUMqO4lAoo6xkg3wMJHIEC8d5pekRloSMKaybSNgBDz0CCtcbK/tbMzAicaxExwr88EEgUiD64oinHnoV5x9gBlQBtGZUGtDUqCXSJh7MzYgEQ98Cu8gdI1IqmA/xTezQxLNqXReS33m8GmIQEpYllgXCvhSDYgvxW7jJHsOZAsKZHCaAwVWV+a1MgQHOesGVcrwa0C5VREVwjXZMRvsP66ZPp40fj+/f6Dx+s2xtDDb69C8KMBdE7xt6zrYw+Ot5uUN579N4QvcVYEG46rDcUNy0w6r11DSWVrxkbKheaTEcKSkobQy2+4qK6sAtE4bWY/t7Eqp4wIr/lmixhhCYpYe81hdC+5tAr3hPCDryNU1W+28jNe+FpVWZdYEygzhzrr+YpLiscPdkSdCcoUG6a7GTyDvE7lfXWFEHrlV26QF1VWwNlnKBKzIOGoUyyupoM+RkSPpPKoBjgZ2LlnS2j9Pfm5h8Lny/8IZ16sWv0g7Rkt5d8+JDyUV4IvKDjTaR39xIJhhuNvgu18kKmKDw9+kJxWjx1f27PvOlF9VdP3nXeSrI5+ZsarnLzN7ZtOXU/r8H2MXXg2GSD8Ild+PUHaQOjA3XIrBgYRVdolPOozAgapCR8sxjQKprAqZuyNzrwtdnNqxUGu83zVoAboPud3n0E0D3KYWozQNeSTyn9f2sX7K9+ftV/2zTDvbgt/2UPNiaOrqWAJoY/CJvM/iexiVVlcV11lcELWHZ6yaUGX0y2MRb4/8SY+bmGZEnOJDBCC2ioxUJizEMWdhn0cNZBH2MnjC118P5EMAmFqFkADm4yIAToBJLOJFACvEDS2B+gEuY/+AmIApYxgt/IWZCd3Sthi4wTUUIGslvFZN7XymyafQYLKS6LVOYmBCOWPHYvWr1iVT16ECdjaY0znlRhjSzziJfEJHSAfQ+7XCJyS6IDW+UVNll2b1m5ku/6pRVWMQlYe0kwCxmWCEmQAbGzEiXjo+YytvH3Z2CCFC4W0kBFk9YIk3jYJ0dWW2EVAXlQlEyqeJafeKQSrCGT8RCeRJQEOcAMmMsLiRB39zYHzEq2gm1GwG2LlbweTxWt2F+S9Ar3wJi7qYIkKIImVKC971uuJuM0QRJT3Fwl3YMtktWmkQUZj8MpZAAA') format('woff2'),
+  url('./iconfont/iconfont.woff?t=1551264567539') format('woff'),
+  url('./iconfont/iconfont.ttf?t=1551264567539') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('./iconfont/iconfont.svg?t=1551264567539#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconicon_newgroup:before {
+  content: "\eb99";
+}
+
+.iconicon_search:before {
+  content: "\eb9c";
+}
+
+.iconicon_synergy:before {
+  content: "\eba2";
+}
+
