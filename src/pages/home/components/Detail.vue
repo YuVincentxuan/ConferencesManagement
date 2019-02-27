@@ -2,9 +2,15 @@
     <div class="content">
         <div class="title">
             <h2>功能选择</h2>
-            <span></span>
+            <span class="border-bottom"></span>
         </div>
-        <div class="content-item" v-for="item of list" :key="item.id">
+        <div
+            :class="{'hoverBg':index==hoverIndex,'content-item':1}"
+            @mouseover="hoverIndex = index"
+            @mouseout="hoverIndex = -1"
+            v-for="(item, index) of list"
+            :key="item.id"
+        >
             <div class="item">
                 <span class="iconfont iconfont-item" v-html="item.font">{{item.font}}</span><br>
                 <span class="item-desc">{{item.title}}</span>
@@ -14,7 +20,7 @@
 </template>
 <script>
 export default {
-    name: 'HomeDetail',  
+    name: 'HomeDetail',
     data () {
         return {
             list: [{
@@ -29,7 +35,8 @@ export default {
                 'id':'3',
                 'font':'&#xeb99;',
                 'title':'会议室修改'
-            }]
+            }],
+            hoverIndex: -1
         }
     } 
 }
@@ -43,6 +50,16 @@ export default {
          h2
             font-size 28px
             font-weight 600
+            margin-bottom 10px
+         .border-bottom
+            position relative
+            display block
+            width 100px
+            left 0
+            right 0
+            margin auto 
+            margin-bottom 50px
+            border-bottom 1px solid #000
         .content-item
             float left
             height 200px
@@ -58,4 +75,7 @@ export default {
                     position relative
                     top 5px
                     font-size 22px
+        .hoverBg
+            background #eee
+            border-bottom 3px solid $bgColor
 </style>
