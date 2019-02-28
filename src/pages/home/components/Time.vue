@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <div class="title">
-            <h2>功能选择</h2>
+            <h2>当前会议室使用情况</h2>
             <span class="border-bottom"></span>
         </div>
         <div
@@ -36,6 +36,22 @@ export default {
                 'id':'3',
                 'font':'&#xeb99;',
                 'title':'会议室修改'
+            },{
+                'id':'4',
+                'font':'&#xeb99;',
+                'title':'会议室修改'
+            },{
+                'id':'4',
+                'font':'&#xeb99;',
+                'title':'会议室修改'
+            },{
+                'id':'4',
+                'font':'&#xeb99;',
+                'title':'会议室修改'
+            },{
+                'id':'4',
+                'font':'&#xeb99;',
+                'title':'会议室修改'
             }],
             hoverIndex: -1
         }
@@ -45,7 +61,7 @@ export default {
 <style lang="stylus" scoped>
     @import '~styles/varibles.styl'
     .content
-        padding 50px 100px 150px 100px
+        padding 100px 100px 50px 100px
         .title
             text-align  center
          h2
@@ -62,9 +78,11 @@ export default {
             margin-bottom 50px
             border-bottom 1px solid #000
         .content-item
+            display inline-block
             float left
             height 200px
-            width 33.33%
+            width 20%
+            margin 10px 20px
             text-align center
             border-bottom 3px solid transparent
             .item
