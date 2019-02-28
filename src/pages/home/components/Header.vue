@@ -4,10 +4,16 @@
            <img class="logo-img" src="../../../assets/images/logo.jpg">
        </div>
        <div class="header-list">
-           <ul class="list">
-               <li class="list-item">首页</li>
-               <li class="list-item">信息查询</li>
-               <li class="list-item">会议室预定</li>
+           <ul v-for="(item, index) of list" :key="item.id" class="list">
+               <li class="list-item">
+                <span 
+                    :class="{'hoverBtm':index==hoverIndex}"
+                    @mouseover="hoverIndex = index"
+                    @mouseout="hoverIndex = -1"
+                >
+                    {{item.title}}
+                </span>
+                </li>
            </ul>
        </div>
        <div class="header-login">
@@ -19,10 +25,26 @@
 </template>
 <script>
 export default {
-    name: 'HomeHeader',   
+    name: 'HomeHeader',
+    data () {
+        return {
+            list: [{
+                'id':'1',
+                'title': '首页'
+            },{
+                'id':'2',
+                'title': '功能'
+            },{
+                'id':'3',
+                'title': '使用情况'
+            }],
+            hoverIndex: -1
+        }
+    }   
 }
 </script>
 <style lang="stylus" scoped>
+    @import '~styles/varibles.styl'
     .header
         z-index 2 
         position fixed
@@ -34,7 +56,6 @@ export default {
         background-color #fff
         border-bottom 1px solid #ccc
         text-align  center 
-
     .header-logo
         width 200px
         float left
@@ -49,7 +70,12 @@ export default {
                 width 20%
                 margin-right 20px
                 cursor pointer
-                font-size 16px  
+                font-size 16px
+            .hoverBtm
+                color #000
+                border-bottom 1px solid $bgColor
+                padding 10px 0
     .header-login
         width 100px
+            
 </style>

@@ -44,7 +44,6 @@ export default {
 <style lang="stylus" scoped>
     @import '~styles/varibles.styl'
     .content
-        padding 100px
         .title
             text-align  center
          h2
@@ -78,4 +77,5 @@ export default {
         .hoverBg
             background #eee
             border-bottom 3px solid $bgColor
+            cursor pointer
 </style>

@@ -3,11 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import echarts from 'echarts'
 import 'styles/reset.css'
 import 'styles/iconfont.css'
-Vue.config.productionTip = false
 
-/* eslint-disable no-new */
+Vue.config.productionTip = false
+Vue.prototype.$echarts = echarts 
+
 new Vue({
   el: '#app',
   router,
