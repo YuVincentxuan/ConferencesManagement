@@ -20,7 +20,10 @@
                 <div class="item item-face">
                     <span class="iconfont iconfont-item">&#xe60a;</span><br>
                     <span class="item-desc">{{item.title}}</span>
-                    <span class="ifUse"><span :class="{'points':1,'green':item.useable,'red':!item.useable}"></span>{{ifUseable(item.useable)}}</span>
+                    <span class="ifUse">
+                        <span :class="{'points':1,'green':item.useable,'red':!item.useable}"></span>
+                        {{ifUseable(item.useable)}}
+                    </span>
                     <div class="item item-face">
                         <router-link to='/room'>
                             <input class="showBtn" v-show="index==hoverIndex" type="button" :value="showValue(item.useable)">
@@ -116,7 +119,6 @@ export default {
             text-align center
             background-color #eee
             border-radius 4px
-            border 1px solid $bgColor
             overflow hidden
             display flex
             align-items  center

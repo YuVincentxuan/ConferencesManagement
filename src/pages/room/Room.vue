@@ -16,4 +16,6 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+    .header
+        background-color transparent
 </style>

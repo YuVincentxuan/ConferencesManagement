@@ -1,15 +1,15 @@
 <template>
     <div class="container" @click="handleGallaryClick">
         <div class="wrapper">
-           <swiper :options="swiperOptions">
+           <swiper :options="swiperOptions" ref="mySwiper">
                 <swiper-slide>
                     <img class="gallary-img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551430326755&di=3f967519fb0d84a2d4959ebce99bb997&imgtype=0&src=http%3A%2F%2Fac-q.static.booking.cn%2Fimages%2Fhotel%2Fmax1024x768%2F975%2F97582115.jpg"/>
                 </swiper-slide>
                 <swiper-slide>
                     <img class="gallary-img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551430326755&di=3f967519fb0d84a2d4959ebce99bb997&imgtype=0&src=http%3A%2F%2Fac-q.static.booking.cn%2Fimages%2Fhotel%2Fmax1024x768%2F975%2F97582115.jpg"/>
                 </swiper-slide>
-                <div class="swiper-pagination"  slot="pagination"></div>
             </swiper>
+            <div class="swiper-pagination"></div>
         </div>
     </div>
 </template>
@@ -23,9 +23,11 @@ export default {
         pagination: '.swiper-pagination',
         paginationType: 'fraction',
         paginationClickable: true,
-        spaceBetween: 30,
         observer: true,
-        observeParents: true
+        mousewheelControl : true,
+        observeParents: true,
+        prevButton:'.swiper-button-prev',
+        nextButton:'.swiper-button-next'
       }
     }
   },
@@ -58,6 +60,7 @@ export default {
       .gallary-img
         width 100%
       .swiper-pagination
+        font-size 28px
         color #fff
-        bottom -1rem
+        bottom 1rem
 </style>
