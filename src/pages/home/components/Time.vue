@@ -22,7 +22,9 @@
                     <span class="item-desc">{{item.title}}</span>
                     <span class="ifUse"><span :class="{'points':1,'green':item.useable,'red':!item.useable}"></span>{{ifUseable(item.useable)}}</span>
                     <div class="item item-face">
-                        <input class="showBtn" v-show="index==hoverIndex" type="button" :value="showValue(item.useable)">
+                        <router-link to='/room'>
+                            <input class="showBtn" v-show="index==hoverIndex" type="button" :value="showValue(item.useable)">
+                        </router-link>
                     </div>
                     
                 </div>

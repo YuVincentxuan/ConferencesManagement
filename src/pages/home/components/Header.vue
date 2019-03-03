@@ -4,17 +4,32 @@
            <img class="logo-img" src="../../../assets/images/logo.jpg">
        </div>
        <div class="header-list">
-           <ul v-for="(item, index) of list" :key="item.id" class="list">
-               <li class="list-item">
-                <span 
-                    :class="{'hoverBtm':index==hoverIndex}"
-                    @mouseover="hoverIndex = index"
-                    @mouseout="hoverIndex = -1"
-                >
-                    {{item.title}}
-                </span>
+           <ul   class="list">
+               <li v-for="(item, index) of list" :key="item.id" class="list-item">
+                    <span 
+                        :class="{'hoverBtm':index==hoverIndex}"
+                        @mouseover="hoverIndex = index"
+                        @mouseout="hoverIndex = -1"
+                    >
+                        {{item.title}}
+                    </span>
+                    <dl 
+                        v-show="index==showList" 
+                        v-if="exist(item)" 
+                        class="hoverList"
+                    >
+                        <div >
+                            <dd 
+                                v-for="(item, index) of item.list" 
+                                :key="index" class="hoverList-item"
+                            >{{item}}
+                                </dd>
+                        </div>
+                    </dl>
                 </li>
+                
            </ul>
+
        </div>
        <div class="header-login">
            <span>登录</span>
@@ -30,15 +45,33 @@ export default {
         return {
             list: [{
                 'id':'1',
-                'title': '首页'
+                'title': '首页',
+                'list':[]
+                
             },{
                 'id':'2',
-                'title': '功能'
+                'title': '使用情况',
+                'list':['当前使用情况','当日使用情况','当月使用用情况']
             },{
                 'id':'3',
-                'title': '使用情况'
+                'title': '功能',
+                'list':['当前使用情况','当日使用情况','当月使用情况']
             }],
             hoverIndex: -1
+        }
+    },
+    methods: {
+        exist(el){
+            if(el.list.length==0)
+            {
+                return false
+            }
+            else return true
+        },
+        showList(){
+            if(hoverIndex!=-1){
+                document.getElementById()
+            }
         }
     }   
 }
@@ -64,13 +97,31 @@ export default {
     .header-list
         flex .8
         .list
-            position relative
             .list-item
+                position relative
+                display inline-block
                 float left
                 width 20%
                 margin-right 20px
                 cursor pointer
-                font-size 16px
+                textStyle()
+            .hoverList
+                position absolute
+                display inline
+                z-index 99
+                width 120px
+                padding 15px 20px 20px 20px
+                font-weight 300
+                top 60px
+                left -1px
+                background-color rgba(255,255,255,0.90)
+                .hoverList-item
+                    height 25px
+                    line-height 25px
+                    text-align left
+                    margin-bottom 10px
+                    width 100%
+                    textStyle()
             .hoverBtm
                 color #000
                 border-bottom 1px solid $bgColor

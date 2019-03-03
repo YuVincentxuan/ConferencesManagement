@@ -2,7 +2,9 @@
     <div class="content">
         <home-header></home-header>
         <home-Time></home-Time>
-        <home-number></home-number>
+        <keep-alive>
+            <home-number></home-number>
+        </keep-alive>
         <home-detail></home-detail>
         <home-footer></home-footer>
     </div>
