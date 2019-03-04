@@ -11,7 +11,7 @@
                         <span class="points green"></span>可使用
                     </span>
                     <div class="img-number text-white">
-                        <span class="iconfont icon-img">&#xe692;</span>123
+                        <span class="iconfont icon-img">&#xe692;</span>2
                     </div>
                 </div>
             </div>
@@ -22,21 +22,22 @@
             @close="handleGallaryClose"
         >
         </common-gallary>
-        <template>
-</template>
+        <room-reservation></room-reservation>
     </div>
 </template>
 <script>
 import CommonGallary from 'common/gallary/Gallary'
+import RoomReservation from './Reservation'
 export default {
-    name: 'HomeInfor',
+    name: 'RoomInfor',
     data () {
         return{
             showGallary: false,
         }
 },
     components: {
-        CommonGallary
+        CommonGallary,
+        RoomReservation
     },
     methods: {
         handleBannerClick () {
@@ -51,10 +52,12 @@ export default {
 <style lang="stylus" scoped>
     @import '~styles/varibles.styl'
     .content
-        padding 61px 100px 150px 100px
+        padding 61px 100px 0px 100px
         .back
-            position relative
-            width 100%
+            position fixed
+            z-index 20
+            left 10%
+            right 10%
             .back-img
                 width 100%
                 height 600px

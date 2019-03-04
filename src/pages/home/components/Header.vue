@@ -79,7 +79,7 @@ export default {
 <style lang="stylus" scoped>
     @import '~styles/varibles.styl'
     .header
-        z-index 2 
+        z-index 40
         position fixed
         display flex
         height 60px

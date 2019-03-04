@@ -1,17 +1,17 @@
 <template>
     <div class="content">
         <home-header></home-header>
-        <home-infor></home-infor>
+        <room-infor></room-infor>
     </div>
 </template>
 <script>
 import HomeHeader from '../home/components/Header'
-import HomeInfor from './components/Infor'
+import RoomInfor from './components/Infor'
 export default {
     name: 'Room',
     components: {
         HomeHeader,
-        HomeInfor
+        RoomInfor
     }    
 }
 </script>
