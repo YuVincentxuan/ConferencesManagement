@@ -7,7 +7,10 @@
             <ul class="list">
                 <div class="top-nav">
                     <div class="nav-item">
-                        选择时间
+                        <span class="nav-title nav-item-title">筛选会议室</span>
+                    </div>
+                    <div class="nav-item">
+                        <span class="nav-item-title">选择时间:</span>
                          <el-time-select
                             placeholder="起始时间"
                             v-model="startTime"
@@ -29,11 +32,16 @@
                         </el-time-select>
                     </div>
                     <div class="nav-item">
-                         选择会议室
+                        <span class="nav-item-title" >选择会议室:</span>
                         <el-checkbox-group fill="rgb(159,15,19)" v-model="checkboxGroup1">
                             <el-checkbox-button  v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox-button>
                         </el-checkbox-group>
                     </div>
+                    <div class="nav-item">
+                        <span class="nav-item-title"></span>
+                        <input class="showBtn" type="button" value="确定">
+                    </div>
+                  
                 </div>
                 <li 
                     v-for="(item,index) of list" 
@@ -118,17 +126,17 @@ export default {
         padding 61px 0 50px 0
         .box
             background-image linear-gradient(top, rgba(159,15,19,1) 5%, rgba(245, 245, 245, 0))
-            height 300px
+            height 350px
             width 100%
         .list
             position relative
             width 80%
             margin auto
-            top -280px
+            top -300px
             padding 0 7%
             .top-nav
-                height 150px
-                background-image linear-gradient(top, rgba(255,255,255,1) 30%, rgba(245, 245, 245, 0))
+                height 240px
+                background-image linear-gradient(top, rgba(255,255,255,1) 20%, rgba(245, 245, 245, 0))
                 border-top 3px solid #fff
                 margin 0 1.2%
                 .nav-item
@@ -136,11 +144,27 @@ export default {
                     width 100%
                     margin 10px
                     line-height 50px
+                    .nav-title
+                        textStyle()
+                        font-size 20px
+                        width 100px !important 
+                    .nav-item-title
+                        display inline-block
+                        width 80px
                     .el-checkbox-group
                         display inline-block
                         position relative
-                        top -5px
-                    
+                        top -5px  
+                .showBtn
+                    line-height 25px
+                    margin-right 20px
+                    height 25px
+                    width 75px
+                    border-radius 5px
+                    color #fff
+                    font-weight bold
+                    cursor pointer  
+                    background-color $bgColor
             .list-item
                 display inline-block
                 position relative

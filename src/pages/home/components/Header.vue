@@ -5,30 +5,28 @@
        </div>
        <div class="header-list">
            <ul   class="list">
-               <li v-for="(item, index) of list" :key="item.id" class="list-item">
-                   <router-link :to='item.router'>
-                        <span 
-                            :class="{'hoverBtm':index==hoverIndex}"
-                            @mouseover="hoverIndex = index"
-                            @mouseout="hoverIndex = -1"
-                        >
-                            {{item.title}}
-                        </span>
-                   </router-link>
-                    <dl 
-                        v-show="index==showList" 
-                        v-if="exist(item)" 
-                        class="hoverList"
+               <router-link tag="li" :to='item.router' v-for="(item, index) of list" :key="item.id" class="list-item">
+                    <span 
+                        :class="{'hoverBtm':index==hoverIndex}"
+                        @mouseover="hoverIndex = index"
+                        @mouseout="hoverIndex = -1"
                     >
-                        <div >
-                            <dd 
-                                v-for="(item, index) of item.list" 
-                                :key="index" class="hoverList-item"
-                            >{{item}}
-                                </dd>
-                        </div>
-                    </dl>
-                </li>
+                        {{item.title}}
+                    </span>
+                <dl 
+                    v-show="index==showList" 
+                    v-if="exist(item)" 
+                    class="hoverList"
+                >
+                    <div >
+                        <dd 
+                            v-for="(item, index) of item.list" 
+                            :key="index" class="hoverList-item"
+                        >{{item}}
+                            </dd>
+                    </div>
+                </dl>
+                </router-link>
                 
            </ul>
 

@@ -4,7 +4,7 @@
             <h2>功能选择</h2>
             <span class="border-bottom"></span>
         </div>
-        <router-link v-for="(item, index) of list" :to='item.link' :key="item.id">
+        <router-link tag="div" v-for="(item, index) of list" :to='item.link' :key="item.id">
             <div
                 :class="{'hoverBg':index==hoverIndex,'content-item':1}"
                 @mouseover="hoverIndex = index"

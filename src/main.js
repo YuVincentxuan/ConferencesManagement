@@ -16,6 +16,8 @@ Vue.prototype.$echarts = echarts
 Vue.use(VueAwesomeSwiper)
 Vue.use(ElementUI);
 
+
+
 new Vue({
   el: '#app',
   router,
@@ -23,3 +25,6 @@ new Vue({
   render: h => h(App),
   template: '<App/>'
 })
+// router.afterEach((to,from,next) => {
+//     window.scrollTo(0,0);
+//   });
