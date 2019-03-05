@@ -6,13 +6,15 @@
        <div class="header-list">
            <ul   class="list">
                <li v-for="(item, index) of list" :key="item.id" class="list-item">
-                    <span 
-                        :class="{'hoverBtm':index==hoverIndex}"
-                        @mouseover="hoverIndex = index"
-                        @mouseout="hoverIndex = -1"
-                    >
-                        {{item.title}}
-                    </span>
+                   <router-link :to='item.router'>
+                        <span 
+                            :class="{'hoverBtm':index==hoverIndex}"
+                            @mouseover="hoverIndex = index"
+                            @mouseout="hoverIndex = -1"
+                        >
+                            {{item.title}}
+                        </span>
+                   </router-link>
                     <dl 
                         v-show="index==showList" 
                         v-if="exist(item)" 
@@ -46,16 +48,19 @@ export default {
             list: [{
                 'id':'1',
                 'title': '首页',
-                'list':[]
+                'list':[],
+                'router':'/'
                 
             },{
                 'id':'2',
                 'title': '使用情况',
-                'list':['当前使用情况','当日使用情况','当月使用用情况']
+                'list':['当前使用情况','当日使用情况','当月使用用情况'],
+                'router':'/#'
             },{
                 'id':'3',
                 'title': '功能',
-                'list':['当前使用情况','当日使用情况','当月使用情况']
+                'list':['当前使用情况','当日使用情况','当月使用情况'],
+                'router':'#function'
             }],
             hoverIndex: -1
         }

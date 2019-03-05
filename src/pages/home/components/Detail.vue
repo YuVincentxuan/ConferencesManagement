@@ -1,21 +1,21 @@
 <template>
     <div class="content">
-        <div class="title">
+        <div id="function" class="title">
             <h2>功能选择</h2>
             <span class="border-bottom"></span>
         </div>
-        <div
-            :class="{'hoverBg':index==hoverIndex,'content-item':1}"
-            @mouseover="hoverIndex = index"
-            @mouseout="hoverIndex = -1"
-            v-for="(item, index) of list"
-            :key="item.id"
-        >
-            <div class="item">
-                <span class="iconfont iconfont-item" v-html="item.font">{{item.font}}</span><br>
-                <span class="item-desc">{{item.title}}</span>
+        <router-link v-for="(item, index) of list" :to='item.link' :key="item.id">
+            <div
+                :class="{'hoverBg':index==hoverIndex,'content-item':1}"
+                @mouseover="hoverIndex = index"
+                @mouseout="hoverIndex = -1"
+            >
+                <div class="item">
+                    <span class="iconfont iconfont-item" v-html="item.font">{{item.font}}</span><br>
+                    <span class="item-desc">{{item.title}}</span>
+                </div>
             </div>
-        </div>
+        </router-link>
         <div class="clear"></div>
     </div>
 </template>
@@ -27,15 +27,18 @@ export default {
             list: [{
                 'id':'1',
                 'font':'&#xeb9c;',
-                'title':'会议室查询'
+                'title':'会议室查询',
+                'link':'/search'
             },{
                 'id':'2',
                 'font':'&#xeba2;',
-                'title':'会议室预定'
+                'title':'会议室预定',
+                'link':'/book'
             },{
                 'id':'3',
                 'font':'&#xeb99;',
-                'title':'会议室修改'
+                'title':'会议室修改',
+                'link':'/change'
             }],
             hoverIndex: -1
         }

@@ -1,17 +1,17 @@
 <template>
     <div class="content">
         <home-header></home-header>
-        <room-infor></room-infor>
+        <book-list></book-list>
     </div>
 </template>
 <script>
 import HomeHeader from '../home/components/Header'
-import RoomInfor from './components/Infor'
+import BookList from './components/List'
 export default {
-    name: 'Room',
+    name: 'Book',
     components: {
         HomeHeader,
-        RoomInfor
+        BookList
     }    
 }
 </script>
