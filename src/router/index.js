@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '../pages/home/Home'
 import Room from '../pages/room/Room'
 import Book from '../pages/book/Book'
+import Search from '../pages/search/Search'
 Vue.use(Router)
 
 export default new Router({
@@ -27,6 +28,10 @@ export default new Router({
       path: '/book',
       name: 'Book',
       component: Book
+    },{
+      path: '/search',
+      name: 'Search',
+      component: Search
     }
 
   ]

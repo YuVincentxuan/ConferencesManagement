@@ -59,6 +59,11 @@ export default {
                 'title': '功能',
                 'list':['当前使用情况','当日使用情况','当月使用情况'],
                 'router':'#function'
+            },{
+                'id':'4',
+                'title': '个人中心',
+                'list':['当前使用情况','当日使用情况','当月使用情况'],
+                'router':'#function'
             }],
             hoverIndex: -1
         }
