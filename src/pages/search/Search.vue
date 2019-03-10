@@ -11,7 +11,7 @@ export default {
     name: 'Search',
     components: {
         HomeHeader,
-        SearchBackground
+        SearchBackground,
     }    
 }
 </script>

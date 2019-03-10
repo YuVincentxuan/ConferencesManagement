@@ -4,6 +4,7 @@ import Home from '../pages/home/Home'
 import Room from '../pages/room/Room'
 import Book from '../pages/book/Book'
 import Search from '../pages/search/Search'
+import Center from '../pages/center/Center'
 Vue.use(Router)
 
 export default new Router({
@@ -32,7 +33,10 @@ export default new Router({
       path: '/search',
       name: 'Search',
       component: Search
+    },{
+      path: '/center',
+      name: 'Center',
+      component: Center
     }
-
   ]
 })
