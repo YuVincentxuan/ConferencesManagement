@@ -64,7 +64,9 @@
                             <span class="pos-left">
                                 <span class="iconfont iconfont-item">&#xeba2;</span>1月3日 15:00
                             </span>
-                            <input class="showBtn" type="button" value="预定">
+                            <router-link to="/step">
+                                <input class="showBtn" type="button" value="预定">
+                            </router-link>
                         </span>
                     </div>
                 </li>

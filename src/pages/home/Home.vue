@@ -6,7 +6,6 @@
             <home-number></home-number>
         </keep-alive>
         <home-detail></home-detail>
-        <home-footer></home-footer>
     </div>
 </template>
 <script>

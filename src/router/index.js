@@ -5,6 +5,7 @@ import Room from '../pages/room/Room'
 import Book from '../pages/book/Book'
 import Search from '../pages/search/Search'
 import Center from '../pages/center/Center'
+import Step from '../pages/step/Step'
 Vue.use(Router)
 
 export default new Router({
@@ -37,6 +38,10 @@ export default new Router({
       path: '/center',
       name: 'Center',
       component: Center
+    },{
+      path: '/step',
+      name: 'Step',
+      component: Step
     }
   ]
 })
