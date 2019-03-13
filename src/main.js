@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import 'swiper/dist/css/swiper.css'
 import 'styles/reset.css'
 import 'styles/iconfont.css'
+import $ from 'jquery'
 
 Vue.config.productionTip = false
 Vue.prototype.$echarts = echarts 

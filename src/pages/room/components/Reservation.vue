@@ -20,7 +20,7 @@
                 </el-table-column>
                 <el-table-column
                   label="会议发起者"
-                  prop="id">
+                  prop="name">
                 </el-table-column>
                 <el-table-column
                   label="参会人数"
@@ -103,20 +103,18 @@ export default {
     name: 'HomeReservation',
     data() {
       return {
-        tableData: [{
-          id: '余文轩',
-          num: '13',
-          people: ['高博宇','王鑫'],
-          time: '13:00-15:00'
+        'tableData': [{
+          'name': '余文轩',
+          'num': '13',
+          'people': ['高博宇','王鑫'],
+          'time': '13:00-15:00'
         }], 
-          RoomData: [{
-          date: '15:00-16:00',
-          name: '三号会议室',
-          address: '上海市普陀区金沙江路 1518 弄'
+          'RoomData': [{
+          'date': '15:00-16:00',
+          'name': '三号会议室',
         }, {
-          date: '20:00-22:00',
-          name: '二号会议室',
-          address: '上海市普陀区金沙江路 1517 弄'
+          'date': '20:00-22:00',
+          'name': '二号会议室',
         }],
         search: ''
       }

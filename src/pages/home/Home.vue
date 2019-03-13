@@ -1,9 +1,9 @@
 <template>
     <div class="content">
         <home-header></home-header>
-        <home-Time></home-Time>
+        <home-Time :list="list"></home-Time>
         <keep-alive>
-            <home-number></home-number>
+            <home-number :list="number"></home-number>
         </keep-alive>
         <home-detail></home-detail>
     </div>
@@ -14,6 +14,7 @@ import HomeDetail from './components/Detail'
 import HomeNumber from './components/Number'
 import HomeTime from './components/Time'
 import HomeFooter from './components/Footer'
+import axios from 'axios'
 export default {
     name: 'Home',
     components: {
@@ -22,6 +23,27 @@ export default {
         HomeNumber,
         HomeTime,
         HomeFooter
+    },
+    data () {
+        return{
+            list:[],
+            number:{},
+        }
+    },
+    methods:{
+        getHomeInfo(){
+            axios.get('static/mock/index.json')
+            .then(this.getHomeInfoSucc)
+        },
+        getHomeInfoSucc (res) {
+            res = res.data
+            this.list = res.list
+            this.number = res.number
+            console.log(this.number)
+        }
+    },
+    mounted(){
+        this.getHomeInfo()
     }    
 }
 </script>

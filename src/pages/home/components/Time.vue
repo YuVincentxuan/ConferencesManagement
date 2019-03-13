@@ -6,7 +6,7 @@
         </div>
         <div
             class="content-item"
-            @mouseover="hoverIndex = index, handleMouserover"
+            @mouseover="hoverIndex = index"
             @mouseout="hoverIndex = -1"
             v-for="(item, index) of list"
             :key="item.id"
@@ -39,44 +39,12 @@
 <script>
 export default {
     name: 'HomeDetail',
-    data () {
+    props:{
+        list: Array
+    },
+    data() {
         return {
-            list: [{
-                'id':'1',
-                'title':'一号会议室',
-                'img':'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551368481865&di=3c1e7743fb46b83eadc571874829a7d6&imgtype=0&src=http%3A%2F%2Fac-q.static.booking.cn%2Fimages%2Fhotel%2Fmax1024x768%2F753%2F75366210.jpg',
-                'useable':1,
-            },{
-                'id':'2',
-                'title':'二号会议室',
-                'img':'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551429207286&di=5d5b1b69a6a591bfae8c549a9146debb&imgtype=0&src=http%3A%2F%2Fp.zhuna.cn%2FHotel_Images%2F39208%2F538387a8-272a-4830-b378-8ddfefefeb38.png',
-                'useable':1
-            },{
-                'id':'3',
-                'title':'三号会议室',
-                'img':'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551430326758&di=9616b73c74fef90cc26d60468dd12203&imgtype=0&src=http%3A%2F%2Fac-r.static.booking.cn%2Fimages%2Fhotel%2Fmax1024x768%2F265%2F26559484.jpg',
-                'useable':0
-
-            },{
-                'id':'4',
-                'title':'四号会议室',
-                'img':'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551430326755&di=3f967519fb0d84a2d4959ebce99bb997&imgtype=0&src=http%3A%2F%2Fac-q.static.booking.cn%2Fimages%2Fhotel%2Fmax1024x768%2F975%2F97582115.jpg',
-                'useable':1
-
-            },{
-                'id':'5',
-                'title':'五号会议室',
-                'img':'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551429003243&di=bce6ea2bdd560b0e4842c695832c3445&imgtype=0&src=http%3A%2F%2Fbig5.eastu.com%2Fhotelpic%2F9580_07.jpg',
-                'useable':1
-
-            },{
-                'id':'6',
-                'title':'六号会议室',
-                'img':'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551429137571&di=a7f30118a89c574ead52ea4ec1afce0f&imgtype=0&src=http%3A%2F%2Fwww.kecc.com.tw%2Fimages%2Fvenue%2Flargeimages%2FConference%2F302e%2F1.jpg',
-                'useable':1
-
-            }],
-            hoverIndex: -1,
+             hoverIndex: -1,
         }
     },
         methods: {
