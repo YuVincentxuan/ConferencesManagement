@@ -39,7 +39,6 @@ export default {
             res = res.data
             this.list = res.list
             this.number = res.number
-            console.log(this.number)
         }
     },
     mounted(){

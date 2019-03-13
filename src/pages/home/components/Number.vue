@@ -102,8 +102,10 @@ export default {
                     }
                 }]
             });  
+                myChart.showLoading();
               $.get('static/mock/index.json').done(function (data) {
                 // 填入数据
+                myChart.hideLoading()
                 myChart.setOption({
                     xAxis: {
                         data: data.number.hours

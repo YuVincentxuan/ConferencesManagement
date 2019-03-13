@@ -5,9 +5,6 @@
                 <swiper-slide>
                     <img class="gallary-img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551430326755&di=3f967519fb0d84a2d4959ebce99bb997&imgtype=0&src=http%3A%2F%2Fac-q.static.booking.cn%2Fimages%2Fhotel%2Fmax1024x768%2F975%2F97582115.jpg"/>
                 </swiper-slide>
-                <swiper-slide>
-                    <img class="gallary-img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551430326755&di=3f967519fb0d84a2d4959ebce99bb997&imgtype=0&src=http%3A%2F%2Fac-q.static.booking.cn%2Fimages%2Fhotel%2Fmax1024x768%2F975%2F97582115.jpg"/>
-                </swiper-slide>
             </swiper>
             <div class="swiper-pagination"></div>
         </div>
