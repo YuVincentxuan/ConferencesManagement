@@ -11,7 +11,7 @@
                         <span class="points green"></span>可使用
                     </span>
                     <div class="img-number text-white">
-                        <span class="iconfont icon-img">&#xe692;</span>2
+                        <span class="iconfont icon-img">&#xe692;</span>{{list.length}}
                     </div>
                 </div>
             </div>
@@ -20,9 +20,10 @@
         <common-gallary
             v-show="showGallary"
             @close="handleGallaryClose"
+            :list="list"
         >
         </common-gallary>
-        <room-reservation></room-reservation>
+        <room-reservation :list="listData"></room-reservation>
     </div>
 </template>
 <script>
@@ -30,6 +31,10 @@ import CommonGallary from 'common/gallary/Gallary'
 import RoomReservation from './Reservation'
 export default {
     name: 'RoomInfor',
+    props:{
+        list:Array,
+        listData:Object
+    },
     data () {
         return{
             showGallary: false,

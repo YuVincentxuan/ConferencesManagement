@@ -5,7 +5,7 @@
             <span class="title">会议室搜索</span>
             <el-input
                 
-                placeholder="请输入内容"
+                placeholder="请输入会议室名称或者时间"
                 prefix-icon="el-icon-search"
                 v-model="search"
                 @input="handClick"
@@ -14,7 +14,7 @@
         </div>
         <div v-show="showInput">
             <el-table
-            :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+            :data="list.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase())||data.date.toLowerCase().includes(search.toLowerCase()))"
             style="width: 100%"> 
             <el-table-column
             label="会议室名称"
@@ -46,25 +46,11 @@
 <script>
 export default {
     name: 'SearchBackground',
+    props:{
+      list:Object
+    },
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }],
         search: '',
         showInput: false
       }
@@ -78,7 +64,6 @@ export default {
       },
       handClick(){
           this.showInput = true
-          document.getElementsByClassName("content").style.backgroundImg('url',' ')
       }
     }
 }

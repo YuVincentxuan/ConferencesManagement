@@ -7,7 +7,7 @@
             </div>
             <div class="list-detail">
               <el-table
-                :data="tableData"
+                :data="list.tableData"
                 style="width: 100%">
                 <el-table-column type="expand">
                   <template slot-scope="props">
@@ -40,7 +40,7 @@
             </div>
             <div class="list-detail">
               <el-table
-              :data="RoomData"
+              :data="list.RoomData"
               style="width: 100%">
               <el-table-column
                 label="时间"
@@ -71,7 +71,7 @@
             </div>
             <div class="list-detail">
               <el-table
-              :data="RoomData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+              :data="list.RoomData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
               style="width: 100%">
               <el-table-column
                 label="时间"
@@ -101,21 +101,11 @@
 
 export default {
     name: 'HomeReservation',
+    props:{
+      list:Object
+    },
     data() {
       return {
-        'tableData': [{
-          'name': '余文轩',
-          'num': '13',
-          'people': ['高博宇','王鑫'],
-          'time': '13:00-15:00'
-        }], 
-          'RoomData': [{
-          'date': '15:00-16:00',
-          'name': '三号会议室',
-        }, {
-          'date': '20:00-22:00',
-          'name': '二号会议室',
-        }],
         search: ''
       }
     },

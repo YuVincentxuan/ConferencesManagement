@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <home-header></home-header>
-        <room-infor></room-infor>
+        <room-infor :list="list" :listData="listData"></room-infor>
     </div>
 </template>
 <script>
@@ -14,14 +14,22 @@ export default {
         HomeHeader,
         RoomInfor
     }, 
+    data(){
+        return{
+            list:[],
+            listData:{}
+        }
+    },
     methods:{
         getRoomInfo(){
-            axios.get('static/mock/index.json')
+            axios.get('static/mock/book.json')
                 .then(this.getRoomInfoSucc)
         },
         getRoomInfoSucc(res){
             res = res.data
-            this.list = res.list
+            console.log(res.img)
+            this.list = res.img
+            this.listData = res.listData
         }
     },
     mounted() {

@@ -84,19 +84,19 @@ export default {
         console.log(value, direction, movedKeys);
       },
        open2() {
-        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        this.$confirm('是否确定提交预定?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
           this.$message({
             type: 'success',
-            message: '删除成功!'
+            message: '预定成功!'
           });
         }).catch(() => {
           this.$message({
             type: 'info',
-            message: '已取消删除'
+            message: '已取消预定'
           });          
         });
       }
