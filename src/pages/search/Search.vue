@@ -27,7 +27,6 @@ export default {
         getSearchInfoSucc(res){
             res = res.data
             this.list = res.listData.RoomData
-            console.log(this.list)
         }
     },
     mounted(){

@@ -9,7 +9,7 @@ import Step from '../pages/step/Step'
 Vue.use(Router)
 
 export default new Router({
-  mode:'history',
+  mode:'hash',
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition

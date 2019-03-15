@@ -4,10 +4,10 @@
         <div class="content">
             <el-tabs :tab-position="tabPosition">
                 <el-tab-pane label="个人中心">
-                    <center-person></center-person>
+                    <center-person :list="list"></center-person>
                 </el-tab-pane>
                 <el-tab-pane label="预定进程">
-                    <center-process></center-process>
+                    <center-process :list="processList"></center-process>
                 </el-tab-pane>
                 <el-tab-pane label="取消预定">
                     <center-cancel></center-cancel>
@@ -21,6 +21,7 @@ import HomeHeader from '../home/components/Header'
 import CenterPerson from './components/Person'
 import CenterProcess from './components/Process'
 import CenterCancel from './components/Cancel'
+import axios from 'axios'
 export default {
     name: 'Center',
     components:{
@@ -31,9 +32,26 @@ export default {
     },
     data() {
       return {
-        tabPosition: 'left'
+        tabPosition: 'left',
+        list:[],
+        processList:{},
       };
-    }
+    },
+    methods:{
+        getCenterInfo(){
+            axios.get('static/mock/center.json')
+            .then(this.getCenterInfoSucc)
+        },
+        getCenterInfoSucc(res){
+            res = res.data
+            this.list = res.list
+            this.processList = res.processList.activities
+            console.log(this.processList)
+        }
+    },
+    mounted(){
+        this.getCenterInfo()
+    },
 }
 </script>
 <style lang="stylus" scoped>
