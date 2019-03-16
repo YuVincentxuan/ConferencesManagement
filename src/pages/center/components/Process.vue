@@ -17,11 +17,11 @@
 export default {
     name: 'CenterProcess',
     props:{
-      list:Object
+      list:Array
     },
-    // data() {
-    //   return {
-    //     reverse: true,
+    data() {
+      return {
+        reverse: true
     //     activities: [{
     //       content: '预定成功',
     //       timestamp: '2018-04-15'
@@ -32,8 +32,8 @@ export default {
     //       content: '请求发送',
     //       timestamp: '2018-04-11'
     //     }]
-    //   };
-    // }
+      };
+    }
 }
 </script>
 <style lang="stylus" scoped>

@@ -6,6 +6,8 @@ import Book from '../pages/book/Book'
 import Search from '../pages/search/Search'
 import Center from '../pages/center/Center'
 import Step from '../pages/step/Step'
+import Log from '../pages/log/Log'
+import Sign from '../pages/sign/Sign'
 Vue.use(Router)
 
 export default new Router({
@@ -42,6 +44,14 @@ export default new Router({
       path: '/step',
       name: 'Step',
       component: Step
+    },{
+      path: '/log',
+      name: 'Log',
+      component: Log
+    },{
+      path: '/sign',
+      name: 'Sign',
+      component: Sign
     }
   ]
 })

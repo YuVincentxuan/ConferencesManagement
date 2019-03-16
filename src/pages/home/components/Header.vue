@@ -4,7 +4,7 @@
            <img class="logo-img" src="../../../assets/images/logo.jpg">
        </div>
        <div class="header-list">
-           <ul   class="list">
+           <ul class="list">
                <router-link tag="li" :to='item.router' v-for="(item, index) of list" :key="item.id" class="list-item">
                     <span 
                         :class="{'hoverBtm':index==hoverIndex}"
@@ -32,9 +32,9 @@
 
        </div>
        <div class="header-login">
-           <span>登录</span>
+           <router-link tag="span" to="/log">登录</router-link>
            <span>|</span>
-           <span>注册</span>
+           <router-link tag="span" to="/sign">注册</router-link>
        </div>
     </div>
 </template>
@@ -136,5 +136,5 @@ export default {
                 padding 10px 0
     .header-login
         width 100px
-            
+        cursor pointer
 </style>

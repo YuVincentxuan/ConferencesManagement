@@ -34,7 +34,7 @@ export default {
       return {
         tabPosition: 'left',
         list:[],
-        processList:{},
+        processList:[],
         cancelList:[]
       };
     },
@@ -48,7 +48,7 @@ export default {
             this.list = res.list
             this.processList = res.processList
             this.cancelList = res.cancle.tableData
-            console.log(this.cancelList)
+            console.log(this.processList)
         }
     },
     mounted(){
