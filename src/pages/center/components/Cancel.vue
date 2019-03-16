@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-         <el-table
-    :data="tableData"
+      <el-table
+    :data="list"
     style="width: 100%">
     <el-table-column
       label="会议室"
@@ -34,23 +34,26 @@
 <script>
 export default {
     name: 'CenterCancel',
-     data() {
-      return {
-        tableData: [{
-          date: '2016-05-02 16:00',
-          name: '一号会议室'
-        }, {
-          date: '2016-05-04 16:00',
-          name: '王小虎'
-        }, {
-          date: '2016-05-01 16:00',
-          name: '王小虎'
-        }, {
-          date: '2016-05-03 16:00',
-          name: '王小虎'
-        }]
-      }
-     },
+    props:{
+      list: Array
+    },
+    //  data() {
+    //   return {
+    //     tableData: [{
+    //       date: '2016-05-02 16:00',
+    //       name: '一号会议室'
+    //     }, {
+    //       date: '2016-05-04 16:00',
+    //       name: '王小虎'
+    //     }, {
+    //       date: '2016-05-01 16:00',
+    //       name: '王小虎'
+    //     }, {
+    //       date: '2016-05-03 16:00',
+    //       name: '王小虎'
+    //     }]
+    //   }
+    //  },
       methods: {
       handleEdit(index, row) {
         console.log(index, row);

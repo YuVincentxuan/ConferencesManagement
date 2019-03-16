@@ -10,7 +10,7 @@
                     <center-process :list="processList"></center-process>
                 </el-tab-pane>
                 <el-tab-pane label="取消预定">
-                    <center-cancel></center-cancel>
+                    <center-cancel :list="cancelList"></center-cancel>
                 </el-tab-pane>
             </el-tabs>
         </div>
@@ -35,6 +35,7 @@ export default {
         tabPosition: 'left',
         list:[],
         processList:{},
+        cancelList:[]
       };
     },
     methods:{
@@ -45,8 +46,9 @@ export default {
         getCenterInfoSucc(res){
             res = res.data
             this.list = res.list
-            this.processList = res.processList.activities
-            console.log(this.processList)
+            this.processList = res.processList
+            this.cancelList = res.cancle.tableData
+            console.log(this.cancelList)
         }
     },
     mounted(){
