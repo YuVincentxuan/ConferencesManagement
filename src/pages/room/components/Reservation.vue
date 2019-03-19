@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="top-nav">
-        <div class="list-item">
+        <div class="list-item" v-show="!list.useable">
             <div class="title">
               当前使用情况
             </div>
@@ -34,7 +34,7 @@
              </el-table>
             </div>
         </div>
-        <div class="list-item">
+        <div class="list-item" v-show="list.useable">
             <div class="title">
               立即预定
             </div>
@@ -58,7 +58,8 @@
                   <router-link to="/step">
                     <el-button
                       size="mini"
-                      @click="handleDelete(scope.$index, scope.row)">预定</el-button>
+                      :key="list.jobID"
+                      @click="handleClick(scope.$index, scope.row, list.jobID)">预定</el-button>
                   </router-link>
                 </template>
               </el-table-column>
@@ -87,7 +88,8 @@
                   <router-link to="/step">
                   <el-button
                     size="mini"
-                    @click="handleDelete(scope.$index, scope.row)">预定</el-button>
+                    :key="list.jobID"
+                    @click="handleClick(scope.$index, scope.row, list.jobID)">预定</el-button>
                   </router-link>
                 </template>
               </el-table-column>
@@ -98,23 +100,26 @@
   </div>
 </template>
 <script>
-
+import axios from 'axios'
 export default {
     name: 'HomeReservation',
     props:{
-      list:Object
+      list:Object,
     },
     data() {
       return {
-        search: ''
+        search: '',
+        jobId:123,
       }
     },
     methods: {
-        handleEdit(index, row) {
-        console.log(index, row);
-      },
-      handleDelete(index, row) {
-        console.log(index, row);
+      handleClick(index, row, value) {
+        this.$router.push({
+          name:'Step',
+          params:{
+            jobId:value
+          }
+        })
       }
     }
  

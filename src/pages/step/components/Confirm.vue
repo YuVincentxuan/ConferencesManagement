@@ -37,6 +37,10 @@
 <script>
 export default {
     name: 'StepConfirm',
+    props:{
+      list:Array,
+      peopleList:Array
+    },
      data() {
       const generateData = _ => {
         const data = [];
@@ -55,27 +59,27 @@ export default {
         renderFunc(h, option) {
           return <span>{ option.key } - { option.label }</span>;
         },
-         list:[{
-                'id':'1',
-                'item':'发起人',
-                'infor':'余文轩' 
-            },{
-                'id':'2',
-                'item':'工号',
-                'infor':'123456',
-            },{
-                'id':'3',
-                'item':'电话',
-                'infor':'123451521566',
-            },{
-                'id':'4',
-                'item':'部门',
-                'infor':'网页开发'
-            },{  
-                'id':'5',
-                'item':'组别',
-                'infor':'前端一组'
-            }]
+        //  list:[{
+        //         'id':'1',
+        //         'item':'发起人',
+        //         'infor':'余文轩' 
+        //     },{
+        //         'id':'2',
+        //         'item':'工号',
+        //         'infor':'123456',
+        //     },{
+        //         'id':'3',
+        //         'item':'电话',
+        //         'infor':'123451521566',
+        //     },{
+        //         'id':'4',
+        //         'item':'部门',
+        //         'infor':'网页开发'
+        //     },{  
+        //         'id':'5',
+        //         'item':'组别',
+        //         'infor':'前端一组'
+        //     }]
       };
     },
 

@@ -23,7 +23,15 @@ export default {
     },
     created(){
         this.boardroomId = this.$route.params.boardroomId
-        console.log(this.boardroomId)
+        axios.post('/getCurrentDateReservation',{
+            boardroomId:this.boardroomId
+        })
+        .then(function(response){
+            console.log(response);
+        })
+        .catch(function(error){
+            console.log(error)
+        })
     },
     methods:{
         getRoomInfo(){
