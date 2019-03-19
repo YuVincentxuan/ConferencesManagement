@@ -47,7 +47,7 @@
 export default {
     name: 'SearchBackground',
     props:{
-      list:Object
+      list:Array
     },
     data() {
       return {

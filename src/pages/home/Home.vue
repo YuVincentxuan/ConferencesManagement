@@ -3,7 +3,7 @@
         <home-header></home-header>
         <home-Time :list="list"></home-Time>
         <keep-alive>
-            <home-number :list="number"></home-number>
+            <home-number></home-number>
         </keep-alive>
         <home-detail></home-detail>
     </div>
@@ -27,22 +27,39 @@ export default {
     data () {
         return{
             list:[],
-            number:{},
+            // number:{},
         }
     },
     methods:{
         getHomeInfo(){
-            axios.get('static/mock/index.json')
+            // axios.get('static/mock/room.json')
+            axios.post('/getBoardroom')
             .then(this.getHomeInfoSucc)
         },
         getHomeInfoSucc (res) {
             res = res.data
-            this.list = res.list
-            this.number = res.number
+            if(res.code == 200)
+            {
+                const data= res.data
+                this.list = data
+            }
         }
+        // getNumInfo(){
+        //     axios.get('static/mock/number.json')
+        //     .then(this.getNumInfoSucc)
+        // },
+        // getNumInfoSucc(res){
+        //      res = res.data
+        //      console.log(res)
+        //     if(res.code == 200)
+        //     {
+        //         this.number = res
+        //     }
+        // }
     },
     mounted(){
         this.getHomeInfo()
+        // this.getNumInfo()
     }    
 }
 </script>

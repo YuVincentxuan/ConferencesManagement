@@ -14,7 +14,7 @@
             <div style="text-align: center">
                 <el-transfer
                 style="text-align: left; display: inline-block"
-                v-model="value3"
+                v-model="value"
                 filterable
                 :render-content="renderFunc"
                 :titles="['联系人', '参会人员']"
@@ -44,18 +44,18 @@ export default {
      data() {
       const generateData = _ => {
         const data = [];
-        for (let i = 1; i <= 15; i++) {
+        for (let i = 0; i <this.peopleList.length; i++) {
           data.push({
             key: i,
-            label: `备选项 ${ i }`
+            label: this.peopleList[i]
           });
         }
         return data;
       };
       return {
         data: generateData(),
-        value3: [1],
-        value4: [1],
+        value: [],
+        dataList:[],
         renderFunc(h, option) {
           return <span>{ option.key } - { option.label }</span>;
         },
@@ -82,7 +82,9 @@ export default {
         //     }]
       };
     },
-
+  mounted(){
+    console.log(this.value)
+  },
     methods: {
       handleChange(value, direction, movedKeys) {
         console.log(value, direction, movedKeys);

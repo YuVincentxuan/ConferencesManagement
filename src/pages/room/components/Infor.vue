@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <div class="back" @click="handleBannerClick">
-            <img class="pos-ab back-img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551430326755&di=3f967519fb0d84a2d4959ebce99bb997&imgtype=0&src=http%3A%2F%2Fac-q.static.booking.cn%2Fimages%2Fhotel%2Fmax1024x768%2F975%2F97582115.jpg">
+            <img class="pos-ab back-img" :src="list">
             <div class="pos-ab black">   
             </div>
             <div class="room-infor text-white">
@@ -11,7 +11,7 @@
                         <span class="points green"></span>可使用
                     </span>
                     <div class="img-number text-white">
-                        <span class="iconfont icon-img">&#xe692;</span>{{list.length}}
+                        <span class="iconfont icon-img">&#xe692;</span>1
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@ import RoomReservation from './Reservation'
 export default {
     name: 'RoomInfor',
     props:{
-        list:Array,
+        list:'',
         listData:Object
     },
     data () {

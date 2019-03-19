@@ -40,9 +40,12 @@ export default {
         },
         getStepInfoSucc(res){
             res = res.data
-            const data= res.data
-            this.list = data.list
-            this.peopleList = data.peopleList
+            if(res.code == 200){
+                const data= res.data
+                this.list = data.list
+                this.peopleList = data.peopleList
+            }
+            
         }
 
     },

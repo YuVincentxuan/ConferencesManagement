@@ -21,12 +21,18 @@ export default {
     },
     methods:{
         getBookInfor(){
-            axios.get('static/mock/index.json')
+            // axios.get('static/mock/seven.json')
+            axios.post('/getReservationOfSevenDay')
             .then(this.getBookInfoSucc)
         },
         getBookInfoSucc (res) {
             res = res.data
-            this.list = res.list
+            if(res.code == 200)
+            {
+                const data= res.data
+                this.list = data.list
+            }
+           
         }
     },
     mounted(){

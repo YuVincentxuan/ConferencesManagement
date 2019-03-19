@@ -45,9 +45,10 @@ export default {
         },
         getCenterInfoSucc(res){
             res = res.data
-            this.list = res.list
-            this.processList = res.processList
-            this.cancelList = res.cancle.tableData
+            const data= res.data
+            this.list = data.list
+            this.processList = data.processList
+            this.cancelList = data.cancle.tableData
             console.log(this.processList)
         }
     },

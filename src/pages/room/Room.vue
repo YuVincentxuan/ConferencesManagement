@@ -16,7 +16,7 @@ export default {
     }, 
     data(){
         return{
-            list:[],
+            list:'',
             listData:{},
             boardroomId:''
         }
@@ -24,28 +24,33 @@ export default {
     created(){
         this.boardroomId = this.$route.params.boardroomId
         axios.post('/getCurrentDateReservation',{
+        // axios.get('static/mock/reservation.json',{
             boardroomId:this.boardroomId
         })
-        .then(function(response){
-            console.log(response);
-        })
+         .then(this.getRoomInfoSucc)
         .catch(function(error){
             console.log(error)
         })
     },
     methods:{
-        getRoomInfo(){
-            axios.get('static/mock/book.json')
-                .then(this.getRoomInfoSucc)
-        },
+        // getRoomInfo(){
+        //     // axios.get('static/mock/book.json')
+        //     axios.get('/getCurrentDateReservation')
+        //         .then(this.getRoomInfoSucc)
+        // },
         getRoomInfoSucc(res){
             res = res.data
-            this.list = res.img
-            this.listData = res.listData
+            if(res.code == 200){
+                const data= res.data
+                this.list = data.img
+                this.listData = data.listData
+                console.log(this.listData)
+            }
+          
         }
     },
     mounted() {
-        this.getRoomInfo()   
+        // this.getRoomInfo()   
     }
 }
 </script>

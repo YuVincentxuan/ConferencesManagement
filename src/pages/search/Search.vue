@@ -21,12 +21,17 @@ export default {
     },
     methods:{
         getSearchInfo(){
-            axios.get('static/mock/book.json')
+            // axios.get('static/mock/free.json')
+            axios.post('/sortFreeRoom')
             .then(this.getSearchInfoSucc)
         },
         getSearchInfoSucc(res){
             res = res.data
-            this.list = res.listData.RoomData
+            if(res.code == 200){
+                const data= res.data
+                this.list = data.roomData
+            }
+            
         }
     },
     mounted(){

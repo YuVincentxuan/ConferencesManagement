@@ -40,7 +40,7 @@
             </div>
             <div class="list-detail">
               <el-table
-              :data="list.RoomData"
+              :data="list.roomData"
               style="width: 100%">
               <el-table-column
                 label="时间"
@@ -72,7 +72,7 @@
             </div>
             <div class="list-detail">
               <el-table
-              :data="list.RoomData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+              :data="list.roomData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
               style="width: 100%">
               <el-table-column
                 label="时间"
