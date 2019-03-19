@@ -17,8 +17,13 @@ export default {
     data(){
         return{
             list:[],
-            listData:{}
+            listData:{},
+            boardroomId:''
         }
+    },
+    created(){
+        this.boardroomId = this.$route.params.boardroomId
+        console.log(this.boardroomId)
     },
     methods:{
         getRoomInfo(){
@@ -27,14 +32,13 @@ export default {
         },
         getRoomInfoSucc(res){
             res = res.data
-            console.log(res.img)
             this.list = res.img
             this.listData = res.listData
         }
     },
     mounted() {
         this.getRoomInfo()   
-    },
+    }
 }
 </script>
 <style lang="stylus" scoped>

@@ -7,7 +7,7 @@
                 <el-step title="步骤 3"></el-step>
             </el-steps>
             <div class="basicInfo" v-if="active === 0 ">
-                <el-form ref="form" :model="form" :rules="rules" label-width="80px" class="demo-ruleForm">
+                <el-form ref="form" :model="form" label-width="80px" class="demo-ruleForm">
                     <el-form-item label="姓名">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
@@ -29,7 +29,7 @@
                 <sign-camera></sign-camera>
             </div>
             <div class="basicInfo" v-if="active === 2 ">789</div>
-            <el-button style="margin-top: 12px;" @click="prev" v-if="active === 1|| active === 2">上一步</el-button>
+            <!-- <el-button style="margin-top: 12px;" @click="prev" v-if="active === 1|| active === 2">上一步</el-button> -->
             <el-button style="margin-top: 12px;" @click="next" v-if="active === 0|| active === 1">下一步</el-button>
             <el-button style="margin-top: 12px;" v-if="active === 2" @click="next">提交</el-button>
         </div>

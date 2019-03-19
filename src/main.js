@@ -11,12 +11,12 @@ import 'swiper/dist/css/swiper.css'
 import 'styles/reset.css'
 import 'styles/iconfont.css'
 import $ from 'jquery'
-
+import VueHtml5Plus from 'vue-html5plus'
 Vue.config.productionTip = false
 Vue.prototype.$echarts = echarts 
 Vue.use(VueAwesomeSwiper)
 Vue.use(ElementUI);
-
+Vue.use(VueHtml5Plus)
 
 
 new Vue({

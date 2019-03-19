@@ -25,9 +25,13 @@
                         {{ifUseable(item.useable)}}
                     </span>
                     <div class="item item-face">
-                        <router-link to='/room'>
-                            <input class="showBtn" v-show="index==hoverIndex" type="button" :value="showValue(item.useable)">
-                        </router-link>
+                        <input class="showBtn"
+                            v-show="index==hoverIndex"
+                            type="button"
+                            :key="item.id"
+                            :value="showValue(item.useable)"
+                            @click="handClickBtn(item.id)"
+                        >
                     </div>
                     
                 </div>
@@ -37,6 +41,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     name: 'HomeDetail',
     props:{
@@ -55,6 +60,14 @@ export default {
             ifUseable(el){
                 if(el==0){return "使用中"}
                 else return "空闲中"
+            },
+            handClickBtn(value){
+                this.$router.push({
+                    name:'Room',
+                    params:{
+                        boardroomId:value,
+                    }
+                })
             }
         }
 }
