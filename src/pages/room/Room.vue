@@ -29,7 +29,7 @@ export default {
         })
          .then(this.getRoomInfoSucc)
         .catch(function(error){
-            console.log(error)
+            console.log(this.boardroomId)
         })
     },
     methods:{
