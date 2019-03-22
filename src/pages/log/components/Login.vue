@@ -5,14 +5,14 @@
             <span class="title">登录</span>
             <div style="margin: 20px;"></div>
             <el-form class="demo-ruleForm" :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
-                <el-form-item label="工号">
-                    <el-input v-model="formLabelAlign.name"></el-input>
+                <el-form-item label="工号" prop="job_id">
+                    <el-input v-model="formLabelAlign.job_id"></el-input>
                 </el-form-item>
-                <el-form-item label="密码">
-                    <el-input v-model="formLabelAlign.region"></el-input>
+                <el-form-item label="密码" prop="password">
+                    <el-input v-model="formLabelAlign.password"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm('formLabelAlign')">登录</el-button>
+                    <el-button type="primary" @click="login">登录</el-button>
                     <router-link class="infor" to="/sign" tag="span">没有账号？立即注册</router-link>
                 </el-form-item>
                 
@@ -21,17 +21,53 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     name: 'LogLogin',
      data() {
       return {
         labelPosition: 'left',
         formLabelAlign: {
-          name: '',
-          region: '',
+          job_id: '',
+          password: '',
           type: ''
         }
       };
+    },
+    methods:{
+        login(){
+            let myData = this.formLabelAlign
+            this.$refs.loginForm.validate((vaild) => {
+                if(vaild){
+                    axios.post('',{
+                        data:myData
+                    }).then(res => {
+                        if(res.data.name){
+                            this.$message({
+                                message:'登录成功',
+                                type: 'success'
+                            })
+                            this.$store.commit('changeJob_id', res.data.job_id)
+                            this.$router.push('/')
+                        }else{
+                            this.$message({
+                                message:'密码错误',
+                                type:'warning'
+                            })
+                        }
+                    }).catch(error => {
+                        this.$message({
+                            message:'登录异常',
+                            type:'warning'
+                        })
+                        console.log(error)
+                    })
+                }else {
+                    console.log('error submit!');
+                    return false;
+                }
+            })
+        }
     }
 }
 </script>

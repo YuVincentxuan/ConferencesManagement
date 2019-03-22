@@ -22,7 +22,7 @@ export default {
         }
     },
     created(){
-        this.jobId = this.$route.params.jobId
+        this.jobId = this.$store.state.job_id
         axios.post('/getReservationEmployee',{
             jobId:this.jobId
         })

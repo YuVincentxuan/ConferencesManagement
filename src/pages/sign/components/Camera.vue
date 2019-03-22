@@ -38,6 +38,9 @@ export default {
           ctx.drawImage(video, 0, 0, 300, 300);
           video.style.display="none";
           canvas.style.display="inline-block";
+          var imgData = canvas.toDataURL();
+          var imgData1 = imgData.substring(22);
+          this.$store.commit('submitImg',imgData1)
           },
         stopMedia() {
           }

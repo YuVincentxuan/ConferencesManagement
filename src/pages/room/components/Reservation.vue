@@ -88,8 +88,7 @@
                   <router-link to="/step">
                   <el-button
                     size="mini"
-                    :key="list.jobID"
-                    @click="handleClick(scope.$index, scope.row, list.jobID)">预定</el-button>
+                    @click="handleClick(scope.$index, scope.row)">预定</el-button>
                   </router-link>
                 </template>
               </el-table-column>
@@ -109,16 +108,15 @@ export default {
     data() {
       return {
         search: '',
-        jobId:123,
       }
     },
     methods: {
-      handleClick(index, row, value) {
+      handleClick(index, row) {
         this.$router.push({
-          name:'Step',
-          params:{
-            jobId:value
-          }
+          name:'Step'
+          // params:{
+          //   jobId:value
+          // }
         })
       }
     }

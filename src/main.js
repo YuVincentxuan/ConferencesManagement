@@ -6,6 +6,7 @@ import router from './router'
 import echarts from 'echarts'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import ElementUI from 'element-ui'
+import store from './store'
 import 'element-ui/lib/theme-chalk/index.css';
 import 'swiper/dist/css/swiper.css'
 import 'styles/reset.css'
@@ -22,6 +23,7 @@ Vue.use(VueHtml5Plus)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   render: h => h(App),
   template: '<App/>'
