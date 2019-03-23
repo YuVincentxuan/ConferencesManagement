@@ -48,6 +48,7 @@ export default {
                                 type: 'success'
                             })
                             this.$store.commit('changeJob_id', res.data.job_id)
+                            this.$store.commit('changeShowBtn','false')
                             this.$router.push('/')
                         }else{
                             this.$message({

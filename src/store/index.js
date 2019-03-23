@@ -5,8 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        job_id :'12',
-        img: ''
+        job_id :'0',
+        img: '',
+        showBtn:'true'
     },
     mutations:{
         changeJob_id(state, job_id){
@@ -14,6 +15,9 @@ export default new Vuex.Store({
         },
         submitImg(state, img){
             state.img = img
+        },
+        changeShowBtn(state, showBtn){
+            state.showBtn = showBtn
         }
     }
 })

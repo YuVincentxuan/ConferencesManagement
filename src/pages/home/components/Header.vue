@@ -31,7 +31,7 @@
            </ul>
 
        </div>
-       <div class="header-login">
+       <div v-show="showBtn" class="header-login">
            <router-link tag="span" to="/log">登录</router-link>
            <span>|</span>
            <router-link tag="span" to="/sign">注册</router-link>
@@ -51,22 +51,21 @@ export default {
                 
             },{
                 'id':'2',
-                'title': '使用情况',
-                'list':['当前使用情况','当日使用情况','当月使用用情况'],
-                'router':'/#'
-            },{
-                'id':'3',
-                'title': '功能',
-                'list':['当前使用情况','当日使用情况','当月使用情况'],
-                'router':'#function'
-            },{
-                'id':'4',
                 'title': '个人中心',
                 'list':['当前使用情况','当日使用情况','当月使用情况'],
                 'router':'/center'
+            },{
+                'id':'3',
+                'title': '管理端',
+                'list':['当前使用情况','当日使用情况','当月使用情况'],
+                'router':'/manage'
             }],
-            hoverIndex: -1
+            hoverIndex: -1,
+            showBtn:'',
         }
+    },
+    created(){
+        this.showBtn = this.$store.state.showBtn
     },
     methods: {
         exist(el){
