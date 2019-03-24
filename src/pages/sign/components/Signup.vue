@@ -33,7 +33,7 @@
             </div>
             <!-- <el-button style="margin-top: 12px;" @click="prev" v-if="active === 1|| active === 2">上一步</el-button> -->
             <el-button style="margin-top: 12px;" @click="next" v-if="active === 0 || active === 1">下一步</el-button>
-            <el-button style="margin-top: 12px;" v-if="active === 2" @click="register">提交</el-button>
+            <el-button style="margin-top: 12px;" v-if="active === 2" @click="register('form')">提交</el-button>
         </div>
     </div>
 </template>
@@ -78,7 +78,7 @@ export default {
             }else{
                 // callback()
                    setTimeout(() => {
-                        this.$axios.post('/loginCheck',{
+                        axios.post('/loginCheck',{
                             jobId:value
                         }).then(res => {
                             if(res.data.msg == 'exist'){
@@ -178,12 +178,12 @@ export default {
         }
            
       },
-      register(){
+      register(form){
           if (this.active++ > 2) this.active = 0;
           let myData = this.form
-          this.$refs.form.validate((valid) => {
+          this.$refs[form].validate((valid) => {
               if(valid) {
-                  $.post('/registerSuccess',{
+                  axios.post('/registerSuccess',{
                       data:myData,
                       img:this.img
                   }).then(res => {

@@ -23,8 +23,8 @@ export default {
     },
     created(){
         this.boardroomId = this.$route.params.boardroomId
-        axios.post('/getCurrentDateReservation',{
-        // axios.get('static/mock/reservation.json',{
+        // axios.post('/getCurrentDateReservation',{
+        axios.get('static/mock/reservation.json',{
             boardroomId:this.boardroomId
         })
          .then(this.getRoomInfoSucc)

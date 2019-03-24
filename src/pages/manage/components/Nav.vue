@@ -91,7 +91,8 @@ export default {
             }
         },
         getPeopleInfor(){
-            axios.get('static/mock/people.json')
+            // axios.get('static/mock/people.json')
+            axios.post('/getEmployeeMsg')
             .then(this.getPeopleInforSucc)
         },
         getPeopleInforSucc(res){

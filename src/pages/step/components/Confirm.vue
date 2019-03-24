@@ -35,19 +35,20 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     name: 'StepConfirm',
     props:{
       list:Array,
-      peopleList:Array
+      // peopleList:Array
     },
      data() {
       const generateData = _ => {
         const data = [];
-        for (let i = 0; i <this.peopleList.length; i++) {
+        for (let i = 1; i <=15; i++) {
           data.push({
             key: i,
-            label: this.peopleList[i]
+            label: '备选项 ${i}'
           });
         }
         return data;
@@ -59,35 +60,32 @@ export default {
         renderFunc(h, option) {
           return <span>{ option.key } - { option.label }</span>;
         },
-        //  list:[{
-        //         'id':'1',
-        //         'item':'发起人',
-        //         'infor':'余文轩' 
-        //     },{
-        //         'id':'2',
-        //         'item':'工号',
-        //         'infor':'123456',
-        //     },{
-        //         'id':'3',
-        //         'item':'电话',
-        //         'infor':'123451521566',
-        //     },{
-        //         'id':'4',
-        //         'item':'部门',
-        //         'infor':'网页开发'
-        //     },{  
-        //         'id':'5',
-        //         'item':'组别',
-        //         'infor':'前端一组'
-        //     }]
       };
     },
   mounted(){
-    console.log(this.value)
+    this.getUserInfo();
   },
     methods: {
       handleChange(value, direction, movedKeys) {
         console.log(value, direction, movedKeys);
+      },
+      getUserInfo(){
+        this.data = [];
+        this.value= [];
+        // axios.get('static/mock/step.json',{
+        axios.post('/getReservationEmployee',{
+        }).then(res=>{
+          res = res.data
+          if(res.code == 200){
+              const data= res.data
+              data.peopleList.forEach(c =>{
+              this.data.push({
+                key: c.id,
+                label: c.name
+              })
+          })
+          }
+        })
       },
        open2() {
         this.$confirm('是否确定提交预定?', '提示', {
@@ -95,10 +93,25 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '预定成功!'
-          });
+          axios.post('/',{
+            peopleList: this.value
+          }).then(res =>{
+            if(res.msg === 'success')
+            {
+              this.$message({
+                type: 'success',
+                message: '预定成功!'
+              });
+            }else{
+              this.$message({
+                type: 'warning',
+                message: '预定失败!'
+              });
+            }
+              
+          }).catch(error => {
+            console.log(error)
+          })
         }).catch(() => {
           this.$message({
             type: 'info',

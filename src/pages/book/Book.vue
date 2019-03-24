@@ -16,14 +16,20 @@ export default {
     },
     data(){
         return{
-            list:[]
+            list:[],
+            date:" ", 
+            boardroomID:" ",
+            time:" "
         }
     },
     methods:{
         getBookInfor(){
             // axios.get('static/mock/seven.json')
-            axios.post('/getReservationOfSevenDay')
-            .then(this.getBookInfoSucc)
+            axios.post('/getReservationOfSevenDay',{
+                date:'',
+                boardroomID:'',
+                time:''
+            }).then(this.getBookInfoSucc)
         },
         getBookInfoSucc (res) {
             res = res.data

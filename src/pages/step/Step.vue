@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <home-header></home-header>
-        <step-confirm :list='list' :peopleList='peopleList'></step-confirm>
+        <step-confirm :list='list'></step-confirm>
     </div>
 </template>
 <script>
@@ -18,7 +18,7 @@ export default {
         return{
             jobId:'',
             list:[],
-            peopleList:[]
+            // peopleList:[]
         }
     },
     created(){
@@ -36,6 +36,7 @@ export default {
     methods:{
         getStepInfo(){
             axios.get('static/mock/step.json')
+            //axios.post('/getReservationEmployee')
             .then(this.getStepInfoSucc)
         },
         getStepInfoSucc(res){
@@ -43,7 +44,7 @@ export default {
             if(res.code == 200){
                 const data= res.data
                 this.list = data.list
-                this.peopleList = data.peopleList
+                // this.peopleList = data.peopleList
             }
             
         }

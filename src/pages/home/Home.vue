@@ -32,8 +32,8 @@ export default {
     },
     methods:{
         getHomeInfo(){
-            // axios.get('static/mock/room.json')
-            axios.post('/getBoardroom')
+            axios.get('static/mock/room.json')
+            // axios.post('/getBoardroom')
             .then(this.getHomeInfoSucc)
         },
         getHomeInfoSucc (res) {

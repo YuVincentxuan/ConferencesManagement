@@ -12,7 +12,7 @@
                     <el-input v-model="formLabelAlign.password"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="login">登录</el-button>
+                    <el-button type="primary" @click="login('formLabelAlign')">登录</el-button>
                     <router-link class="infor" to="/sign" tag="span">没有账号？立即注册</router-link>
                 </el-form-item>
                 
@@ -35,9 +35,9 @@ export default {
       };
     },
     methods:{
-        login(){
+        login(formLabelAlign){
             let myData = this.formLabelAlign
-            this.$refs.loginForm.validate((vaild) => {
+            this.$refs[formLabelAlign].validate((vaild) => {
                 if(vaild){
                     axios.post('/loginSuccess',{
                         data:myData
