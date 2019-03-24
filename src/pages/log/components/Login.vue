@@ -39,10 +39,10 @@ export default {
             let myData = this.formLabelAlign
             this.$refs.loginForm.validate((vaild) => {
                 if(vaild){
-                    axios.post('',{
+                    axios.post('/loginSuccess',{
                         data:myData
                     }).then(res => {
-                        if(res.data.name){
+                        if(res.msg == 200){
                             this.$message({
                                 message:'登录成功',
                                 type: 'success'

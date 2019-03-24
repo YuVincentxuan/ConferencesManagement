@@ -78,10 +78,10 @@ export default {
             }else{
                 // callback()
                    setTimeout(() => {
-                        this.$axios.post('/',{
-                            id:value
+                        this.$axios.post('/loginCheck',{
+                            jobId:value
                         }).then(res => {
-                            if(res.data == 'error'){
+                            if(res.data.msg == 'exist'){
                                 callback(new Error('该工号已被注册，请更改'))
                             }
                             else{
@@ -183,11 +183,11 @@ export default {
           let myData = this.form
           this.$refs.form.validate((valid) => {
               if(valid) {
-                  $.post('',{
+                  $.post('/registerSuccess',{
                       data:myData,
                       img:this.img
                   }).then(res => {
-                      if(res.data.info === 'suc'){
+                      if(res.data.msg === 'success'){
                           Message({
                               message:'注册成功，赶快去登录吧',
                               type:'success'
