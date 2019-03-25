@@ -110,19 +110,18 @@ export default {
         },
         addRow (value) {
             var list = {
-            rowNum: '',
-            name:value.name,
-            jobId:value.jobId,
-            tag:'否'
+                rowNum: '',
+                name:value.name,
+                jobId:value.jobId,
+                tag:'否'
             }
             if(list.name!='' &&list.jobId!='')
             {
-                axios.post('/insertEmployeeMsg',{
-                    param:{
-                        jobId:list.jobId,
-                        name:list.name
-                    }
-                }).then((res) => {
+                let params = new URLSearchParams();
+                params.append('jobId',list.jobId,);
+                params.append('name',list.name);
+                axios.post('/insertEmployeeMsg',params)
+                    .then((res) => {
                     if(res.msg == 200){
                         this.list.push(list)
                         this.dialogFormVisible = false
@@ -146,10 +145,10 @@ export default {
             }
         },
         deleteRow(index, rows, data) {
-            axios.post('/deleteEmployee',{
-                param:{
-                   jobId: row.jobId 
-                }.then((res) => {
+            let params = new URLSearchParams();
+            params.append('jobId',row.jobId,);
+            axios.post('/deleteEmployee',params)
+                .then((res) => {
                     if(msg === 'success'){
                         data.splice(index, 1);
                     }else{
@@ -161,7 +160,6 @@ export default {
                 }).catch((error) => {
                     console.log(error)
                 })
-            })
         }
     }
 }

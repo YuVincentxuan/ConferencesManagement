@@ -5,31 +5,46 @@
         </div>
         <hr/>
         <div class="content">
-            <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+            <el-form :model="form" status-icon :rules="rules" ref="form" label-width="100px" class="demo-ruleForm">
                 <el-form-item label="会议室名称" prop="name">
-                    <el-input type="text" v-model="ruleForm2.name" autocomplete="off"></el-input>
+                    <el-input type="text" v-model="form.name" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="会议室id" prop="id">
-                    <el-input v-model.number="ruleForm2.id"></el-input>
+                    <el-input v-model.number="form.id"></el-input>
+                </el-form-item>
+                 <el-form-item  label="会议室容量" prop="department">
+                        <el-select v-model="form.capacity" placeholder="部门">
+                            <el-option label="5" value="5"></el-option>
+                            <el-option label="10" value="10"></el-option>
+                            <el-option label="15" value="15"></el-option>
+                            <el-option label="20" value="20"></el-option>
+                            <el-option label="25" value="25"></el-option>
+                            <el-option label="30" value="30"></el-option>
+                        </el-select>
+                    </el-form-item>
+                <el-form-item>
+                  <el-upload
+                  class="upload-demo"
+                  drag
+                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :on-success="saveImg"
+                  :on-preview="handlePreview"
+                  :on-remove="handleRemove"
+                  :before-upload="beforeUpload"
+                  ref="formUpload"
+                  :auto-upload="false"
+                  :on-exceed="alertLimit"
+                  list-type="picture"
+                  limit="1"
+                  multiple>
+                  <i class="el-icon-upload"></i>
+                  <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                  <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+                  </el-upload>
                 </el-form-item>
                 <el-form-item>
-                <el-upload
-                class="upload-demo"
-                drag
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :on-preview="handlePreview"
-                :on-remove="handleRemove"
-                :file-list="fileList"
-                list-type="picture"
-                multiple>
-                <i class="el-icon-upload"></i>
-                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-                </el-upload>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
-                    <el-button @click="resetForm('ruleForm2')">重置</el-button>
+                    <el-button type="primary" @click="submitForm('form')">提交</el-button>
+                    <el-button @click="resetForm('form')">重置</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -39,56 +54,73 @@
 export default {
     name: 'ManageUpdate',
     data() {
-      var checkAge = (rule, value, callback) => {
+      var chackId = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('年龄不能为空'));
+          return callback(new Error('会议室id不能为空'));
         }
         setTimeout(() => {
           if (!Number.isInteger(value)) {
             callback(new Error('请输入数字值'));
           } else {
-            if (value < 18) {
-              callback(new Error('必须年满18岁'));
-            } else {
               callback();
-            }
           }
         }, 1000);
       };
-      var validatePass = (rule, value, callback) => {
+      var checkName = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('请输入密码'));
+          callback(new Error('请输入名字'));
         } else {
-          if (this.ruleForm2.checkPass !== '') {
-            this.$refs.ruleForm2.validateField('checkPass');
+          if (this.form.checkPass !== '') {
+            this.$refs.form.validateField('checkPass');
           }
           callback();
         }
       };
+      var chackCapacity = (rule, value, callback) =>{
+            if(!value){
+                return callback(new Error('请选择会议室容量'))
+            }
+        }
       return {
-        fileList: [{
-                name: 'food.jpeg',
-                url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-            }],
-        ruleForm2: {
+        form: {
           name: '',
-          id: ''
+          id: '',
+          capacity: ''
         },
-        rules2: {
+        rules: {
           name: [
-            { validator: validatePass, trigger: 'blur' }
+            { validator: checkName, trigger: 'blur' }
           ],
           id: [
-            { validator: checkAge, trigger: 'blur' }
+            { validator: chackId, trigger: 'blur' }
+          ],
+          capacity: [
+            { validator: chackCapacity, trigger: 'change' }
           ]
         }
       };
     },
     methods: {
       submitForm(formName) {
+        var params = new URLSearchParams();
+        let form = this.form
+        params.append('boardroomName',form.name );
+        params.append('capacity', form.capacity);
+        params.append('boardroomImg', this.password);
+        params.append('boardroomId', form.id);
+        this.$refs.formUpload.submit()
         this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
+        if (valid) {
+            axios.post('/insertBoardroom',params)
+            .then(res => {
+              if(res.msg == 200)
+              {
+                this.$message({
+                  message:'上传成功',
+                  type:'success'
+                })
+              }
+            })
           } else {
             console.log('error submit!!');
             return false;
@@ -98,11 +130,25 @@ export default {
       resetForm(formName) {
         this.$refs[formName].resetFields();
       },
-        handleRemove(file, fileList) {
+      handleRemove(file, fileList) {
         console.log(file, fileList);
       },
       handlePreview(file) {
         console.log(file);
+      },
+      alertLimit(file, fileList){
+        this.$message({
+          message:'只能同时上传一张照片',
+          type:'warning'
+        })
+      },
+      saveImg(response,file, fileList){
+        console.log(response)
+      },
+      beforeUpload(file){
+        console.log(file.uid)
+        params.append('boardroomImg', filr.uid);
+        return false;
       }
     }
 }

@@ -85,11 +85,11 @@
               <el-table-column
                 align="right">
                 <template slot-scope="scope">
-                  <router-link to="/step">
+                  
                   <el-button
                     size="mini"
                     @click="handleClick(scope.$index, scope.row)">预定</el-button>
-                  </router-link>
+                  
                 </template>
               </el-table-column>
             </el-table>

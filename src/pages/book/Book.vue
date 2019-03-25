@@ -39,10 +39,18 @@ export default {
                 this.list = data.list
             }
            
+        },
+         timeNow () {
+            var moment = require('moment');
+            let rightNow = moment().hour()
+            this.time = rightNow +':00'+'-'+(rightNow+1)+':00'
+            this.date = (moment().month()+1)+'月'+moment().date()
+            return this.date
         }
     },
     mounted(){
         this.getBookInfor()
+        console.log(this.timeNow())
     }   
 }
 </script>

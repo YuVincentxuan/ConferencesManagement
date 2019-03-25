@@ -43,10 +43,10 @@ export default {
     },
     methods: {
         deleteRow(index, rows, data) {
-            axios.post('/deleteBoardroom',{
-                param:{
-                   boardroomId: row.boardroomId
-                }.then((res) => {
+            let params = new URLSearchParams();
+            params.append('boardroomId',row.boardroomId,);
+            axios.post('/deleteBoardroom',params)
+                .then((res) => {
                     if(msg === 'success'){
                         data.splice(index, 1);
                     }else{
@@ -57,9 +57,7 @@ export default {
                     }
                 }).catch((error) => {
                     console.log(error)
-                })
-            })
-            
+                }) 
         }
     }
 }

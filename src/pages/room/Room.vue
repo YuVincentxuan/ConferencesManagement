@@ -26,7 +26,7 @@ export default {
         var params = new URLSearchParams();
         params.append('boardroomId',this.boardroomId)
         axios.post('/getCurrentDateReservation',params)
-        // axios.get('static/mock/reservation.json',{
+        // axios.get('static/mock/reservation.json')
          .then(this.getRoomInfoSucc)
         .catch(function(error){
             console.log(this.boardroomId)

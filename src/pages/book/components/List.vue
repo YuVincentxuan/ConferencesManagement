@@ -65,7 +65,13 @@
                                 <span class="iconfont iconfont-item">&#xeba2;</span>1月3日 15:00
                             </span>
                             <router-link to="/step">
-                                <input class="showBtn" type="button" value="预定">
+                                <input 
+                                class="showBtn" 
+                                type="button" 
+                                value="预定"
+                                :key="item.id"
+                                @click="handClickBtn(item.id)"
+                                >
                             </router-link>
                         </span>
                     </div>
@@ -124,6 +130,14 @@ export default {
             checkboxGroup1: ['一号会议室'],
             cities: cityOptions
         }
+       
+    },
+    methods:{
+        handClickBtn(value){
+                this.$router.push({
+                    name:'Step'
+                })
+            }
     }
 }
 </script>
