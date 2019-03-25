@@ -23,10 +23,10 @@ export default {
     },
     created(){
         this.boardroomId = this.$route.params.boardroomId
-        // axios.post('/getCurrentDateReservation',{
-        axios.get('static/mock/reservation.json',{
-            boardroomId:this.boardroomId
-        })
+        var params = new URLSearchParams();
+        params.append('boardroomId',this.boardroomId)
+        axios.post('/getCurrentDateReservation',params)
+        // axios.get('static/mock/reservation.json',{
          .then(this.getRoomInfoSucc)
         .catch(function(error){
             console.log(this.boardroomId)

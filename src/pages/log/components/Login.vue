@@ -37,11 +37,13 @@ export default {
     methods:{
         login(formLabelAlign){
             let myData = this.formLabelAlign
+            var params = new URLSearchParams();
+            params.append('jobId',this.formLabelAlign.job_id );
+            params.append('password', this.password);
             this.$refs[formLabelAlign].validate((vaild) => {
                 if(vaild){
-                    axios.post('/loginSuccess',{
-                        data:myData
-                    }).then(res => {
+                    axios.post('/loginSuccess',params)
+                    .then(res => {
                         if(res.msg == 200){
                             this.$message({
                                 message:'登录成功',

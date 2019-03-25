@@ -24,7 +24,7 @@ export default {
     },
     methods:{
         getBookInfor(){
-            // axios.get('static/mock/seven.json')
+            // axios.get('static/mock/seven.json',{
             axios.post('/getReservationOfSevenDay',{
                 date:'',
                 boardroomID:'',
