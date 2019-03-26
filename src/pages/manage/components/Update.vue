@@ -51,6 +51,7 @@
     </div>
 </template>
 <script>
+var params = new URLSearchParams();
 export default {
     name: 'ManageUpdate',
     data() {
@@ -82,6 +83,7 @@ export default {
             }
         }
       return {
+        boardroomImg:'',
         form: {
           name: '',
           id: '',
@@ -102,11 +104,10 @@ export default {
     },
     methods: {
       submitForm(formName) {
-        var params = new URLSearchParams();
         let form = this.form
         params.append('boardroomName',form.name );
         params.append('capacity', form.capacity);
-        params.append('boardroomImg', this.password);
+        params.append('boardroomImg', this.img);
         params.append('boardroomId', form.id);
         this.$refs.formUpload.submit()
         this.$refs[formName].validate((valid) => {
@@ -146,8 +147,7 @@ export default {
         console.log(response)
       },
       beforeUpload(file){
-        console.log(file.uid)
-        params.append('boardroomImg', filr.uid);
+        params.append('boardroomImg', file);
         return false;
       }
     }

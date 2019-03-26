@@ -36,7 +36,7 @@
                 <template slot-scope="scope">
                     <el-button
                     size="mini"
-                    @click="handleDelete(scope.$index, scope.row)">预定</el-button>
+                    @click="bookRoom(scope.$index, scope.row)">预定</el-button>
                 </template>
             </el-table-column>
             </el-table>
@@ -57,10 +57,14 @@ export default {
     },
     methods: {
       handleEdit(index, row) {
-        console.log(index, row);
       },
-      handleDelete(index, row) {
-        console.log(index, row);
+      bookRoom(index, row) {
+        this.$router.push({
+          name:'Step'
+          // params:{
+          //   jobId:value
+          // }
+        })
       },
       handClick(){
           this.showInput = true

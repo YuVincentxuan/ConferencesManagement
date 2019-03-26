@@ -6,7 +6,7 @@
                 <el-tab-pane label="个人中心">
                     <center-person :list="list"></center-person>
                 </el-tab-pane>
-                <el-tab-pane label="预定进程">
+                <el-tab-pane label="预定进程" v-show="false">
                     <center-process :list="processList"></center-process>
                 </el-tab-pane>
                 <el-tab-pane label="取消预定">
@@ -35,25 +35,44 @@ export default {
         tabPosition: 'left',
         list:[],
         processList:[],
-        cancelList:[]
+        cancelList:[],
+        jobId:''
       };
     },
     methods:{
         getCenterInfo(){
-            axios.get('static/mock/center.json')
+            this.jobId = this.$store.state.job_id
+            var params = new URLSearchParams();
+            params.append('jobId',this.jobId);
+            // axios.get('static/mock/center.json')
+             axios.post('/privateCenter',params)
             .then(this.getCenterInfoSucc)
         },
         getCenterInfoSucc(res){
             res = res.data
-            const data= res.data
-            this.list = data.list
-            this.processList = data.processList
-            this.cancelList = data.cancle.tableData
-            console.log(this.processList)
+            if(res.code == 200)
+            {
+                const data= res.data
+                this.list = data.list
+            }
+        },
+        getDeleteInfo(){
+            //  axios.get('static/mock/delete.json')
+             axios.post('/deleteReservation',params)
+            .then(this.getDeleteInfoSucc)
+        },
+        getDeleteInfoSucc(res){
+             res = res.data
+            if(res.code == 200)
+            {
+                const data= res.data
+                this.cancelList = data.tableData
+            }
         }
     },
     mounted(){
         this.getCenterInfo()
+        this.getDeleteInfo()
     },
 }
 </script>

@@ -122,7 +122,7 @@ export default {
                 params.append('name',list.name);
                 axios.post('/insertEmployeeMsg',params)
                     .then((res) => {
-                    if(res.msg == 200){
+                    if(res.msg == 'success'){
                         this.list.push(list)
                         this.dialogFormVisible = false
                         value.name = '',
@@ -146,7 +146,7 @@ export default {
         },
         deleteRow(index, rows, data) {
             let params = new URLSearchParams();
-            params.append('jobId',row.jobId,);
+            params.append('jobId',rows.jobId,);
             axios.post('/deleteEmployee',params)
                 .then((res) => {
                     if(msg === 'success'){

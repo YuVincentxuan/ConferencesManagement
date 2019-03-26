@@ -21,7 +21,7 @@
                     <span class="iconfont iconfont-item">&#xe60a;</span><br>
                     <span class="item-desc">{{item.title}}</span>
                     <span class="ifUse">
-                        <span :class="{'points':1,'green':item.useable,'red':!item.useable}"></span>
+                        <span :class="{'points':1,'green':!item.useable,'red':item.useable}"></span>
                         {{ifUseable(item.useable)}}
                     </span>
                     <div class="item item-face">
@@ -54,11 +54,11 @@ export default {
     },
         methods: {
             showValue(el){
-                if(el==0){return "查看详情"}
+                if(el==1){return "查看详情"}
                 else return "预定"
             },
             ifUseable(el){
-                if(el==0){return "使用中"}
+                if(el==1){return "使用中"}
                 else return "空闲中"
             },
             handClickBtn(value){

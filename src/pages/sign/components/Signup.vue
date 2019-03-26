@@ -59,13 +59,14 @@
                 信息填完了！快提交吧😀
             </div>
             <!-- <el-button style="margin-top: 12px;" @click="prev" v-if="active === 1|| active === 2">上一步</el-button> -->
-            <el-button style="margin-top: 12px;" @click="next" v-if="active === 0 || active === 1">下一步</el-button>
+            <el-button style="margin-top: 12px;" @click="next('form')" v-if="active === 0 || active === 1">下一步</el-button>
             <el-button style="margin-top: 12px;" v-if="active === 2" @click="register('form')">提交</el-button>
         </div>
     </div>
 </template>
 <script>
 import SignCamera from './Camera'
+import axios from 'axios'
 export default {
     name: 'SignSignup',
     components:{
@@ -209,10 +210,10 @@ export default {
         //     --this.active;
         //     if(this.active<0) this.active=0
         // },
-      next() {
+      next(form) {
         if(this.active === 0)
           {
-            this.$refs.form.validate((valid) => {
+            this.$refs[form].validate((valid) => {
             if(valid){
                 if (this.active++ > 2) this.active = 0;
             }

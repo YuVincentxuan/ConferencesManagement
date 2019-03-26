@@ -25,13 +25,14 @@
         <el-button
           size="mini"
           type="danger"
-          @click="handleDelete(scope.$index, scope.row)">取消预定</el-button>
+          @click.native.prevent="deleteRow(scope.$index,scope.row, list)">取消预定</el-button>
       </template>
     </el-table-column>
   </el-table>
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     name: 'CenterCancel',
     props:{
@@ -55,11 +56,23 @@ export default {
     //   }
     //  },
       methods: {
-      handleEdit(index, row) {
-        console.log(index, row);
-      },
-      handleDelete(index, row) {
-        console.log(index, row);
+      deleteRow(index, rows, data) {
+          let params = new URLSearchParams();
+          params.append('boardroomId',rows.boardroomId,);
+          params.append('date',rows.date,);
+          axios.post('/deleteReservationById',params)
+                .then((res) => {
+                    if(msg === 'success'){
+                        data.splice(index, 1);
+                    }else{
+                        this.message({
+                            message:'删除失败',
+                            type:'warning'
+                        })
+                    }
+                }).catch((error) => {
+                    console.log(error)
+                }) 
       }
     }
 }

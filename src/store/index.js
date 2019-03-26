@@ -7,7 +7,8 @@ export default new Vuex.Store({
     state: {
         job_id :'0',
         img: '',
-        showBtn:'true'
+        showBtn:'true',
+        boardroomId:''
     },
     mutations:{
         changeJob_id(state, job_id){
@@ -18,6 +19,10 @@ export default new Vuex.Store({
         },
         changeShowBtn(state, showBtn){
             state.showBtn = showBtn
+        },
+        saveboardroomId(state, boardroomId){
+            state.boardroomId = boardroomId
+            localStorage.setItem('boardroomId', state.boardroomId);
         }
     }
 })

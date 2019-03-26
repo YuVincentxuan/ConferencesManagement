@@ -10,6 +10,12 @@
                         <span class="nav-title nav-item-title">筛选会议室</span>
                     </div>
                     <div class="nav-item">
+                        <span class="nav-item-title">选择日期:</span>
+                         <el-radio-group fill="rgb(159,15,19)" v-model="checkboxGroup2">
+                            <el-radio-button  v-for="date in dateList" :label="date" :key="date">{{date}}</el-radio-button>
+                        </el-radio-group>
+                    </div>
+                    <div class="nav-item">
                         <span class="nav-item-title">选择时间:</span>
                          <el-time-select
                             placeholder="起始时间"
@@ -33,13 +39,13 @@
                     </div>
                     <div class="nav-item">
                         <span class="nav-item-title" >选择会议室:</span>
-                        <el-checkbox-group fill="rgb(159,15,19)" v-model="checkboxGroup1">
-                            <el-checkbox-button  v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox-button>
-                        </el-checkbox-group>
+                        <el-radio-group fill="rgb(159,15,19)" v-model="checkboxGroup1">
+                            <el-radio-button  v-for="city in cities" :label="city" :key="city">{{city}}</el-radio-button>
+                        </el-radio-group>
                     </div>
                     <div class="nav-item">
                         <span class="nav-item-title"></span>
-                        <input class="showBtn" type="button" value="确定">
+                        <input class="showBtn" type="button" @click="handleClick" value="确定">
                     </div>
                   
                 </div>
@@ -81,12 +87,11 @@
     </div>
 </template>
 <script>
- const cityOptions = ['一号会议室', '二号会议室', '三号会议室', '四号会议室'];
+import axios from 'axios'
+const cityOptions = ['一号会议室', '二号会议室', '三号会议室', '四号会议室'];
 export default {
     name: 'BookList',
-    props:{
-        list:Array
-    },
+
     data () {
         return {
             // list: [{
@@ -127,8 +132,14 @@ export default {
             startTime:'',
             endTime:'',
             hoverIndex: -1,
-            checkboxGroup1: ['一号会议室'],
-            cities: cityOptions
+            checkboxGroup1: '一号会议室',
+            checkboxGroup2: '',
+            cities: cityOptions,
+            date:'',
+            dateList:[],
+            list:[], 
+            boardroomID:" ",
+            time:" "
         }
        
     },
@@ -137,8 +148,61 @@ export default {
                 this.$router.push({
                     name:'Step'
                 })
+            },
+       getDate(n){
+            var ss = 24*60*60*1000;
+            var timestamp = new Date().getTime();
+            var date1 = new Date(ss * n + timestamp) //加上n天的国际标准日期
+		    var newTime = date1.toLocaleString(); //把日期转换成2018/6/4 下午10:45:19 格式
+			var arr = newTime.split(" "); //把2018/6/4提取出来
+			var arr2 = arr[0].split('/'); //把年月日数字单独提出来
+			return arr2[1] + '月' + arr2[2] + '日'; //拼接成我们需要的格式返回
+       },
+       handleClick(){
+           this.time =  this.startTime +'-'+this.endTime
+            let params = new URLSearchParams();
+            params.append('date',this.checkboxGroup2);
+            params.append('boardroomID', this.checkboxGroup1);
+            params.append('time', this.time)
+            axios.post('/getReservationOfSevenDay',params)
+            .then(this.getBookInfoSucc)
+       },
+        getBookInfor(){
+            let params = new URLSearchParams();
+            params.append('date',this.date);
+            params.append('boardroomID', this.boardroomID);
+            params.append('time', this.time);
+            // axios.get('static/mock/seven.json',{
+            axios.post('/getReservationOfSevenDay',params)
+            .then(this.getBookInfoSucc)
+        },
+        getBookInfoSucc (res) {
+            res = res.data
+            if(res.code == 200)
+            {
+                const data= res.data
+                this.list = data.list
             }
-    }
+        },
+         timeNow () {
+            var moment = require('moment');
+            let rightNow = moment().hour()
+            this.time = rightNow +':00'+'-'+(rightNow+1)+':00'
+            this.date = (moment().month()+1)+'月'+moment().date()+'日'
+            return this.date
+        }
+    },
+    created(){
+        var dateObj = {};
+        for(var i=0;i<7;i++)
+        {
+            dateObj = this.getDate(i);
+            this.dateList.push(dateObj)
+        }
+    },
+    mounted(){
+        this.getBookInfor()
+    }   
 }
 </script>
 <style lang="stylus" scoped>

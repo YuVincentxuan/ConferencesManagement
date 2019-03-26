@@ -93,9 +93,9 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          axios.post('/',{
-            peopleList: this.value
-          }).then(res =>{
+          var qs = require('qs');
+          axios.post('/',qs.stringify({ peopleList: this.value }, { indices: false }))
+          .then(res =>{
             if(res.msg === 'success')
             {
               this.$message({

@@ -23,6 +23,8 @@ export default {
     },
     created(){
         this.boardroomId = this.$route.params.boardroomId
+        this.$store.commit('saveboardroomId', this.boardroomId)
+        this.jobId = this.$store.boardroomId
         var params = new URLSearchParams();
         params.append('boardroomId',this.boardroomId)
         axios.post('/getCurrentDateReservation',params)
@@ -31,6 +33,15 @@ export default {
         .catch(function(error){
             console.log(this.boardroomId)
         })
+    },
+    computed:{
+        boardroomId(){
+            let localData = localStorage.boardroomId
+            if(this.$store.state.boardroomId===undefined){
+                this.$store.commit('saveboardroomId',localData)
+            }
+            return this.$store.state.boardroomId
+        }
     },
     methods:{
         // getRoomInfo(){

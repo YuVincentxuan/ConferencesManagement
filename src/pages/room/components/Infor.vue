@@ -7,8 +7,11 @@
             <div class="room-infor text-white">
                 <span class="room-name">一号会议室</span>
                 <div class="ifUsePo">
-                    <span class="ifUse">
+                    <span class="ifUse" v-show="!listData.useable">
                         <span class="points green"></span>可使用
+                    </span>
+                    <span class="ifUse" v-show="listData.useable">
+                        <span class="points red"></span>使用中
                     </span>
                     <div class="img-number text-white">
                         <span class="iconfont icon-img">&#xe692;</span>1

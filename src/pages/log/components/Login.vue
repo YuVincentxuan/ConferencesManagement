@@ -4,7 +4,7 @@
         <div class="container">
             <span class="title">登录</span>
             <div style="margin: 20px;"></div>
-            <el-form class="demo-ruleForm" :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+            <el-form class="demo-ruleForm" :label-position="labelPosition" label-width="80px" :model="formLabelAlign" ref="formLabelAlign">
                 <el-form-item label="工号" prop="job_id">
                     <el-input v-model="formLabelAlign.job_id"></el-input>
                 </el-form-item>

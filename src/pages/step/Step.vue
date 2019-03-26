@@ -22,21 +22,24 @@ export default {
         }
     },
     created(){
-        this.jobId = this.$store.state.job_id
-        axios.post('/getReservationEmployee',{
-            jobId:this.jobId
-        })
-        .then(function(response){
-            console.log(response)
-        })
-        .catch(function(error){
-            console.log(error)
-        })
+        // this.jobId = this.$store.state.job_id
+        // var params = new URLSearchParams();
+        // params.append('jobId',this.jobId );
+        // axios.post('/getReservationEmployee',params)
+        // .then(function(response){
+        //     console.log(response)
+        // })
+        // .catch(function(error){
+        //     console.log(error)
+        // })
     },
     methods:{
         getStepInfo(){
-            axios.get('static/mock/step.json')
-            //axios.post('/getReservationEmployee')
+            // axios.get('static/mock/step.json')
+            this.jobId = this.$store.state.job_id
+            var params = new URLSearchParams();
+            params.append('jobId',this.jobId );
+            axios.post('/getReservationEmployee',params)
             .then(this.getStepInfoSucc)
         },
         getStepInfoSucc(res){

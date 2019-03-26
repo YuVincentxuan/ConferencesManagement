@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="top-nav">
-        <div class="list-item" v-show="!list.useable">
+        <div class="list-item" v-show="list.useable">
             <div class="title">
               当前使用情况
             </div>
@@ -34,7 +34,7 @@
              </el-table>
             </div>
         </div>
-        <div class="list-item" v-show="list.useable">
+        <div class="list-item" v-show="!list.useable">
             <div class="title">
               立即预定
             </div>

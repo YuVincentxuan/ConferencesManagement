@@ -22,7 +22,7 @@
                 size="mini"
                 type="danger"
                 @click.native.prevent="deleteRow(scope.$index,scope.row, list)"
-                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+               >删除</el-button>
             </template>
             </el-table-column>
         </el-table>
@@ -44,10 +44,10 @@ export default {
     methods: {
         deleteRow(index, rows, data) {
             let params = new URLSearchParams();
-            params.append('boardroomId',row.boardroomId,);
+            params.append('boardroomId',rows.boardroomId,);
             axios.post('/deleteBoardroom',params)
                 .then((res) => {
-                    if(msg === 'success'){
+                    if(res.msg === 'success'){
                         data.splice(index, 1);
                     }else{
                         this.message({
