@@ -59,7 +59,7 @@
                     <el-button
                       size="mini"
                       :key="list.jobID"
-                      @click="handleClick(scope.$index, scope.row, list.jobID)">预定</el-button>
+                      @click="handleClick(scope.$index, scope.row, list.roomData.date)">预定</el-button>
                   </router-link>
                 </template>
               </el-table-column>
@@ -88,7 +88,7 @@
                   
                   <el-button
                     size="mini"
-                    @click="handleClick(scope.$index, scope.row)">预定</el-button>
+                    @click="handleClick(scope.$index, scope.row, list.roomData.date)">预定</el-button>
                   
                 </template>
               </el-table-column>
@@ -104,6 +104,7 @@ export default {
     name: 'HomeReservation',
     props:{
       list:Object,
+      boardroomId:String
     },
     data() {
       return {
@@ -111,12 +112,22 @@ export default {
       }
     },
     methods: {
-      handleClick(index, row) {
+       timeNow () {
+            var moment = require('moment');
+            let rightNow = moment().hour()
+            this.time = rightNow +':00'+'-'+(rightNow+1)+':00'
+            this.date = (moment().month()+1)+'月'+moment().date()+'日'
+            return this.date
+        },
+      handleClick(index, row, value) {
+       
         this.$router.push({
-          name:'Step'
-          // params:{
-          //   jobId:value
-          // }
+          name:'Step',
+          params:{
+            time:value,
+            date: this.timeNow(),
+            boardroomId:this.boardroomId
+          }
         })
       }
     }

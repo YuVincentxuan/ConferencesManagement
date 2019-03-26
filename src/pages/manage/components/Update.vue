@@ -51,6 +51,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
 var params = new URLSearchParams();
 export default {
     name: 'ManageUpdate',
@@ -107,18 +108,23 @@ export default {
         let form = this.form
         params.append('boardroomName',form.name );
         params.append('capacity', form.capacity);
-        params.append('boardroomImg', this.img);
+        // params.append('boardroomImg', this.img);
         params.append('boardroomId', form.id);
         this.$refs.formUpload.submit()
         this.$refs[formName].validate((valid) => {
         if (valid) {
             axios.post('/insertBoardroom',params)
             .then(res => {
-              if(res.msg == 200)
+              if(res.data.msg == 'success')
               {
                 this.$message({
                   message:'上传成功',
                   type:'success'
+                })
+              }else{
+                this.$message({
+                  message:'上传失败',
+                  type:'warning'
                 })
               }
             })

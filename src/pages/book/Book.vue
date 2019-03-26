@@ -1,10 +1,11 @@
 <template>
     <div class="content">
         <home-header></home-header>
-        <book-list :list="list"></book-list>
+        <book-list></book-list>
     </div>
 </template>
 <script>
+import axios from 'axios'
 import HomeHeader from '../home/components/Header'
 import BookList from './components/List'
 export default {

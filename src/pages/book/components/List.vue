@@ -40,7 +40,7 @@
                     <div class="nav-item">
                         <span class="nav-item-title" >选择会议室:</span>
                         <el-radio-group fill="rgb(159,15,19)" v-model="checkboxGroup1">
-                            <el-radio-button  v-for="city in cities" :label="city" :key="city">{{city}}</el-radio-button>
+                            <el-radio-button  v-for="city in cities" :label="city.boardroomID" :key="city.boardroomID">{{city.boardroomName}}</el-radio-button>
                         </el-radio-group>
                     </div>
                     <div class="nav-item">
@@ -88,10 +88,12 @@
 </template>
 <script>
 import axios from 'axios'
-const cityOptions = ['一号会议室', '二号会议室', '三号会议室', '四号会议室'];
+var cityOptions = [];
 export default {
     name: 'BookList',
-
+    // props:{
+    //     roomList:Array
+    // },
     data () {
         return {
             // list: [{
@@ -132,14 +134,15 @@ export default {
             startTime:'',
             endTime:'',
             hoverIndex: -1,
-            checkboxGroup1: '一号会议室',
+            checkboxGroup1: '',
             checkboxGroup2: '',
             cities: cityOptions,
             date:'',
             dateList:[],
             list:[], 
-            boardroomID:" ",
-            time:" "
+            boardroomID:'',
+            time:" ",
+            roomList:[]
         }
        
     },
@@ -184,6 +187,23 @@ export default {
                 this.list = data.list
             }
         },
+         getRoomInfo(){
+            axios.post('/conferenceRoomReservation')
+            // axios.get('static/mock/reser.json')
+            .then(this.getRoomInfoSucc)
+        },
+        getRoomInfoSucc(res){
+            res = res.data
+            if(res.code == 200){
+                this.roomList = res.data
+                this.roomList.forEach(res => {
+               this.boardroomID =  res.boardroomId
+                })
+            } 
+            if(this.boardroomID){
+                this.getBookInfor()
+            }
+        },
          timeNow () {
             var moment = require('moment');
             let rightNow = moment().hour()
@@ -201,8 +221,22 @@ export default {
         }
     },
     mounted(){
-        this.getBookInfor()
-    }   
+        this.getRoomInfo()
+    },
+    destroyed(){
+        this.cities = []
+        cityOptions = []
+    },
+    watch: {
+            roomList: function(newVal,oldVal){
+                newVal.forEach(res => {
+                cityOptions.push({
+                    boardroomName:res.boardroomName,
+                    boardroomID:res.boardroomId
+                })
+        })
+            }
+        }
 }
 </script>
 <style lang="stylus" scoped>

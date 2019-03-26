@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <home-header></home-header>
-        <step-confirm :list='list'></step-confirm>
+        <step-confirm :list='list' :date='date' :time='time' :boardroomId='boardroomId' ></step-confirm>
     </div>
 </template>
 <script>
@@ -18,6 +18,9 @@ export default {
         return{
             jobId:'',
             list:[],
+            date:'',
+            time:'',
+            boardroomId:''
             // peopleList:[]
         }
     },
@@ -55,6 +58,9 @@ export default {
     },
     mounted(){
         this.getStepInfo()
+        this.date = this.$route.params.date
+        this.time = this.$route.params.time
+        this.boardroomId = this.$route.params.boardroomId
     }
 }
 </script>

@@ -122,7 +122,7 @@ export default {
                 params.append('name',list.name);
                 axios.post('/insertEmployeeMsg',params)
                     .then((res) => {
-                    if(res.msg == 'success'){
+                    if(res.data.msg == 'success'){
                         this.list.push(list)
                         this.dialogFormVisible = false
                         value.name = '',
@@ -149,7 +149,7 @@ export default {
             params.append('jobId',rows.jobId,);
             axios.post('/deleteEmployee',params)
                 .then((res) => {
-                    if(msg === 'success'){
+                    if(res.data.msg === 'success'){
                         data.splice(index, 1);
                     }else{
                         this.message({

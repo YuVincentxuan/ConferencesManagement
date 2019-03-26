@@ -40,6 +40,9 @@ export default {
     name: 'StepConfirm',
     props:{
       list:Array,
+      date:String,
+      time:String,
+      boardroomId:String
       // peopleList:Array
     },
      data() {
@@ -57,6 +60,7 @@ export default {
         data: generateData(),
         value: [],
         dataList:[],
+        peopleList:'',
         renderFunc(h, option) {
           return <span>{ option.key } - { option.label }</span>;
         },
@@ -93,10 +97,17 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          var qs = require('qs');
-          axios.post('/',qs.stringify({ peopleList: this.value }, { indices: false }))
+          this.value.forEach(c => {
+            this.peopleList = this.peopleList + c.id +','
+          })
+          var params = new URLSearchParams();
+          params.append('date',date );
+          params.append('time',time );
+          params.append('boardroomId',boardroomId );
+           params.append('peopleList',this.boardroomId );
+          axios.post('/reservationBoardroom',params)
           .then(res =>{
-            if(res.msg === 'success')
+            if(res.data.msg === 'success')
             {
               this.$message({
                 type: 'success',

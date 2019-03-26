@@ -47,7 +47,7 @@ export default {
             params.append('boardroomId',rows.boardroomId,);
             axios.post('/deleteBoardroom',params)
                 .then((res) => {
-                    if(res.msg === 'success'){
+                    if(res.data.msg == 'success'){
                         data.splice(index, 1);
                     }else{
                         this.message({

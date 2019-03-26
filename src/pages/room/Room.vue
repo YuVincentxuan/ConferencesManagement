@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <home-header></home-header>
-        <room-infor :list="list" :listData="listData"></room-infor>
+        <room-infor :list="list" :listData="listData" :boardroomId="boardroomId"></room-infor>
     </div>
 </template>
 <script>
@@ -24,7 +24,7 @@ export default {
     created(){
         this.boardroomId = this.$route.params.boardroomId
         this.$store.commit('saveboardroomId', this.boardroomId)
-        this.jobId = this.$store.boardroomId
+        this.boardroomId = this.$store.boardroomId
         var params = new URLSearchParams();
         params.append('boardroomId',this.boardroomId)
         axios.post('/getCurrentDateReservation',params)

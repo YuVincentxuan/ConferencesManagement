@@ -6,7 +6,7 @@
                 <el-tab-pane label="个人中心">
                     <center-person :list="list"></center-person>
                 </el-tab-pane>
-                <el-tab-pane label="预定进程" v-show="false">
+                <el-tab-pane label="预定进程">
                     <center-process :list="processList"></center-process>
                 </el-tab-pane>
                 <el-tab-pane label="取消预定">
@@ -41,11 +41,11 @@ export default {
     },
     methods:{
         getCenterInfo(){
-            this.jobId = this.$store.state.job_id
-            var params = new URLSearchParams();
-            params.append('jobId',this.jobId);
+            // this.jobId = this.$store.state.job_id
+            // var params = new URLSearchParams();
+            // params.append('jobId',this.jobId);
             // axios.get('static/mock/center.json')
-             axios.post('/privateCenter',params)
+             axios.post('/privateCenter')
             .then(this.getCenterInfoSucc)
         },
         getCenterInfoSucc(res){

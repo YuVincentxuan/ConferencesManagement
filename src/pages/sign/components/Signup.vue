@@ -101,14 +101,15 @@ export default {
             })
         }
         var checkId = (rule, value, callback) => {
+            var params = new URLSearchParams();
+            params.append('jobId',value)
             if(!value){
                 return callback(new Error('工号不能为空'))
             }else{
                 // callback()
                    setTimeout(() => {
-                        axios.post('/loginCheck',{
-                            jobId:value
-                        }).then(res => {
+                        axios.get('/loginCheck',params)
+                        .then(res => {
                             if(res.data.msg == 'exist'){
                                 callback(new Error('该工号已被注册，请更改'))
                             }
@@ -211,7 +212,7 @@ export default {
         //     if(this.active<0) this.active=0
         // },
       next(form) {
-        if(this.active === 0)
+        if(this.active == 0)
           {
             this.$refs[form].validate((valid) => {
             if(valid){
