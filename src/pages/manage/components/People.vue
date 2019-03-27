@@ -149,7 +149,7 @@ export default {
             params.append('jobId',rows.jobId,);
             axios.post('/deleteEmployee',params)
                 .then((res) => {
-                    if(res.data.msg === 'success'){
+                    if(res.data.msg == 'success'){
                         data.splice(index, 1);
                     }else{
                         this.message({

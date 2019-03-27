@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <home-header></home-header>
-        <step-confirm :list='list' :date='date' :time='time' :boardroomId='boardroomId' ></step-confirm>
+        <step-confirm :date='date' :time='time' :boardroomId='boardroomId' ></step-confirm>
     </div>
 </template>
 <script>
@@ -17,7 +17,7 @@ export default {
     data(){
         return{
             jobId:'',
-            list:[],
+            // list:[],
             date:'',
             time:'',
             boardroomId:''
@@ -37,27 +37,27 @@ export default {
         // })
     },
     methods:{
-        getStepInfo(){
-            // axios.get('static/mock/step.json')
-            this.jobId = this.$store.state.job_id
-            var params = new URLSearchParams();
-            params.append('jobId',this.jobId );
-            axios.post('/getReservationEmployee',params)
-            .then(this.getStepInfoSucc)
-        },
-        getStepInfoSucc(res){
-            res = res.data
-            if(res.code == 200){
-                const data= res.data
-                this.list = data.list
+        // getStepInfo(){
+        //     // axios.get('static/mock/step.json')
+        //     this.jobId = this.$store.state.job_id
+        //     var params = new URLSearchParams();
+        //     params.append('jobId',this.jobId );
+        //     axios.post('/getReservationEmployee',params)
+        //     .then(this.getStepInfoSucc)
+        // },
+        // getStepInfoSucc(res){
+        //     res = res.data
+        //     if(res.code == 200){
+        //         const data= res.data
+        //         this.list = data.list
                 // this.peopleList = data.peopleList
-            }
+            // }
             
-        }
+        // }
 
     },
     mounted(){
-        this.getStepInfo()
+        // this.getStepInfo()
         this.date = this.$route.params.date
         this.time = this.$route.params.time
         this.boardroomId = this.$route.params.boardroomId

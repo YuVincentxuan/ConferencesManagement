@@ -38,7 +38,7 @@ export default {
         login(formLabelAlign){
             let myData = this.formLabelAlign
             var params = new URLSearchParams();
-            params.append('jobId',this.formLabelAlign.job_id );
+            params.append('username',this.formLabelAlign.job_id );
             params.append('password', this.formLabelAlign.password);
             this.$refs[formLabelAlign].validate((vaild) => {
                 if(vaild){
@@ -49,7 +49,7 @@ export default {
                                 message:'登录成功',
                                 type: 'success'
                             })
-                            this.$store.commit('changeJob_id', res.data.job_id)
+                            this.$store.commit('changeJob_id', this.formLabelAlign.job_id)
                             this.$store.commit('changeShowBtn','false')
                             this.$router.push('/')
                         }else{

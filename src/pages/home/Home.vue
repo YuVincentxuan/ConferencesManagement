@@ -57,6 +57,15 @@ export default {
         //     }
         // }
     },
+    computed:{		
+			userName() {
+		        let localData = localStorage.job_id;		       		   
+		        if(this.$store.state.job_id===undefined){		        	
+		          	this.$store.commit('changeJob_id',localData) 
+		        }		       
+		        return this.$store.state.job_id
+             },
+    },
     mounted(){
         this.getHomeInfo()
         // this.getNumInfo()

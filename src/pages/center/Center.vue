@@ -58,7 +58,7 @@ export default {
         },
         getDeleteInfo(){
             //  axios.get('static/mock/delete.json')
-             axios.post('/deleteReservation',params)
+             axios.post('/deleteReservation')
             .then(this.getDeleteInfoSucc)
         },
         getDeleteInfoSucc(res){

@@ -39,7 +39,6 @@ import axios from 'axios'
 export default {
     name: 'StepConfirm',
     props:{
-      list:Array,
       date:String,
       time:String,
       boardroomId:String
@@ -61,6 +60,8 @@ export default {
         value: [],
         dataList:[],
         peopleList:'',
+        jobId:'',
+        list:[],
         renderFunc(h, option) {
           return <span>{ option.key } - { option.label }</span>;
         },
@@ -76,9 +77,12 @@ export default {
       getUserInfo(){
         this.data = [];
         this.value= [];
-        // axios.get('static/mock/step.json',{
-        axios.post('/getReservationEmployee',{
-        }).then(res=>{
+        this.jobId = this.$store.state.job_id
+        var params = new URLSearchParams();
+        params.append('jobId',this.jobId );
+        // axios.get('static/mock/step.json')
+        axios.post('/getReservationEmployee',params)
+        .then(res=>{
           res = res.data
           if(res.code == 200){
               const data= res.data
@@ -88,6 +92,13 @@ export default {
                 label: c.name
               })
           })
+           data.list.forEach(c=>{
+                this.list.push({
+                  id:c.id,
+                  item:c.item,
+                  infor:c.infor
+                })
+              })
           }
         })
       },
@@ -104,10 +115,10 @@ export default {
           params.append('date',date );
           params.append('time',time );
           params.append('boardroomId',boardroomId );
-           params.append('peopleList',this.boardroomId );
+          params.append('peopleList',this.peopleList);
           axios.post('/reservationBoardroom',params)
           .then(res =>{
-            if(res.data.msg === 'success')
+            if(res.data.msg == 'success')
             {
               this.$message({
                 type: 'success',
@@ -119,9 +130,6 @@ export default {
                 message: '预定失败!'
               });
             }
-              
-          }).catch(error => {
-            console.log(error)
           })
         }).catch(() => {
           this.$message({

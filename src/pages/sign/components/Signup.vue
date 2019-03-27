@@ -98,15 +98,16 @@ export default {
             })
         }
         var checkId = (rule, value, callback) => {
-            var params = new URLSearchParams();
             var data = value
-            params.append('jobId',data)
             if(!value){
                 return callback(new Error('工号不能为空'))
             }else{
                 // callback()
                    setTimeout(() => {
-                        axios.get('/loginCheck',params)
+                       var params = new URLSearchParams();
+                        params.append('jobId',data)
+                        console.log(data)
+                        axios.post('/loginCheck',params)
                         .then(res => {
                             if(res.data.msg == 'exist'){
                                 callback(new Error('该工号已被注册，请更改'))
@@ -239,7 +240,7 @@ export default {
         }
            
       },
-      register(form){
+      register(){
         if (this.active++ > 2) this.active = 0;
         let myData = this.form
         var params = new URLSearchParams();
@@ -251,33 +252,27 @@ export default {
         params.append('department', myData.department);
         params.append('phone', myData.phone);
         params.append('img', this.img);
-          this.$refs[form].validate((valid) => {
-              if(valid) {
-                  axios.post('/registerSuccess',params)
-                  .then(res => {
-                      if(res.data.msg === 'success'){
-                          Message({
-                              message:'注册成功，赶快去登录吧',
-                              type:'success'
-                          })
-                      }else{
-                          Message({
-                              message:'注册失败',
-                              type:'danger'
-                          })
-                      }
-                  }).catch(error => {
-                      Message({
-                          message:'注册异常',
-                          type:'danger'
-                      })
-                      console.log(error)
-                  })
-              }else{
-                  console.log('error submit!')
-                  return false;
-              }
-          })
+        axios.post('/registerSuccess',params)
+        .then(res => {
+            if(res.data.msg === 'success'){
+                Message({
+                    message:'注册成功，赶快去登录吧',
+                    type:'success'
+                })
+            }else{
+                Message({
+                    message:'注册失败',
+                    type:'danger'
+                })
+            }
+        }).catch(error => {
+            Message({
+                message:'注册异常',
+                type:'danger'
+            })
+            console.log(error)
+        })
+         
       }
     }
 

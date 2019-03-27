@@ -141,7 +141,7 @@ export default {
             dateList:[],
             list:[], 
             boardroomID:'',
-            time:" ",
+            time:'',
             roomList:[]
         }
        
@@ -158,14 +158,20 @@ export default {
             var date1 = new Date(ss * n + timestamp) //加上n天的国际标准日期
 		    var newTime = date1.toLocaleString(); //把日期转换成2018/6/4 下午10:45:19 格式
 			var arr = newTime.split(" "); //把2018/6/4提取出来
-			var arr2 = arr[0].split('/'); //把年月日数字单独提出来
-			return arr2[1] + '月' + arr2[2] + '日'; //拼接成我们需要的格式返回
+            var arr2 = arr[0].split('/'); //把年月日数字单独提出来
+            if(arr2[1]<10)
+            {
+                return '0'+arr2[1] + '月' + arr2[2] + '日'; //拼接成我们需要的格式返回
+            }else{
+                return arr2[1] + '月' + arr2[2] + '日';
+            }
+			
        },
        handleClick(){
            this.time =  this.startTime +'-'+this.endTime
             let params = new URLSearchParams();
             params.append('date',this.checkboxGroup2);
-            params.append('boardroomID', this.checkboxGroup1);
+            params.append('boardroomId', this.checkboxGroup1);
             params.append('time', this.time)
             axios.post('/getReservationOfSevenDay',params)
             .then(this.getBookInfoSucc)
@@ -173,9 +179,9 @@ export default {
         getBookInfor(){
             let params = new URLSearchParams();
             params.append('date',this.date);
-            params.append('boardroomID', this.boardroomID);
+            params.append('boardroomId', this.boardroomID);
             params.append('time','all');
-            // axios.get('static/mock/seven.json',{
+            // axios.get('static/mock/seven.json')
             axios.post('/getReservationOfSevenDay',params)
             .then(this.getBookInfoSucc)
         },
@@ -209,7 +215,12 @@ export default {
             var moment = require('moment');
             let rightNow = moment().hour()
             this.time = rightNow +':00'+'-'+(rightNow+1)+':00'
-            this.date = (moment().month()+1)+'月'+moment().date()+'日'
+            if(moment().month()<10){
+                this.date = '0'+(moment().month()+1)+'月'+moment().date()+'日'
+            }else{
+                this.date = (moment().month()+1)+'月'+moment().date()+'日'
+            }
+           
             return this.date
         }
     },
@@ -256,7 +267,6 @@ export default {
             top -300px
             padding 0 7%
             .top-nav
-                height 240px
                 background-image linear-gradient(top, rgba(255,255,255,1) 20%, rgba(245, 245, 245, 0))
                 border-top 3px solid #fff
                 margin 0 1.2%

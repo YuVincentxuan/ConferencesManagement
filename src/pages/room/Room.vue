@@ -24,7 +24,7 @@ export default {
     created(){
         this.boardroomId = this.$route.params.boardroomId
         this.$store.commit('saveboardroomId', this.boardroomId)
-        this.boardroomId = this.$store.boardroomId
+        // this.boardroomId = this.$store.boardroomId
         var params = new URLSearchParams();
         params.append('boardroomId',this.boardroomId)
         axios.post('/getCurrentDateReservation',params)

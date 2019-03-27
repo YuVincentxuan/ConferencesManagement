@@ -153,7 +153,13 @@ export default {
         console.log(response)
       },
       beforeUpload(file){
-        params.append('boardroomImg', file);
+        var reader = new FileReader();
+        reader.readAsDataURL(video);
+        reader.onload=function(e){
+          var dataBase64 = e.target.result;
+          var videoNum = dataBase64.split(";base64,")
+        }
+        params.append('boardroomImg', videoNum);
         return false;
       }
     }
