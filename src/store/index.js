@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        job_id :'0',
+        job_id :'',
         img: '',
         showBtn:'true',
         boardroomId:''

@@ -174,7 +174,7 @@ export default {
             let params = new URLSearchParams();
             params.append('date',this.date);
             params.append('boardroomID', this.boardroomID);
-            params.append('time', this.time);
+            params.append('time','all');
             // axios.get('static/mock/seven.json',{
             axios.post('/getReservationOfSevenDay',params)
             .then(this.getBookInfoSucc)
@@ -199,6 +199,7 @@ export default {
                 this.roomList.forEach(res => {
                this.boardroomID =  res.boardroomId
                 })
+            
             } 
             if(this.boardroomID){
                 this.getBookInfor()
@@ -222,6 +223,7 @@ export default {
     },
     mounted(){
         this.getRoomInfo()
+        this.timeNow()
     },
     destroyed(){
         this.cities = []

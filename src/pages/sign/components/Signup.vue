@@ -72,9 +72,6 @@ export default {
     components:{
         SignCamera
     },
-    created(){
-        this.img = this.$store.state.img
-    },
      data() {
         var checkContact = (rule, value, callback) => {
              if(!value) {
@@ -102,7 +99,8 @@ export default {
         }
         var checkId = (rule, value, callback) => {
             var params = new URLSearchParams();
-            params.append('jobId',value)
+            var data = value
+            params.append('jobId',data)
             if(!value){
                 return callback(new Error('工号不能为空'))
             }else{
@@ -152,17 +150,24 @@ export default {
         var checkSex = (rule, value, callback) =>{
             if(!value){
                 return callback(new Error('请勾选性别'))
+            }else{
+                callback()
             }
         }
         var checkPosition = (rule, value, callback) =>{
             if(!value){
                 return callback(new Error('请选择职位'))
+            }else{
+                callback()
             }
         }
         var checkDepartment = (rule, value, callback) =>{
             if(!value){
                 return callback(new Error('请选择部门'))
+            }else{
+                callback()
             }
+
         }
       return {
         active: 0,
@@ -227,7 +232,7 @@ export default {
             })
           }
         else {
-            console.log(this.img)
+            this.img = this.$store.state.img
            if(this.img){
                if (this.active++ > 2) this.active = 0;
            }

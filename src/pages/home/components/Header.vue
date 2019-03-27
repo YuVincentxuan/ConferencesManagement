@@ -31,7 +31,7 @@
            </ul>
 
        </div>
-       <div v-show="showBtn" class="header-login">
+       <div v-show="show()" class="header-login">
            <router-link tag="span" to="/log">登录</router-link>
            <span>|</span>
            <router-link tag="span" to="/sign">注册</router-link>
@@ -61,11 +61,12 @@ export default {
                 'router':'/manage'
             }],
             hoverIndex: -1,
-            showBtn:'',
+            jobId:''
+            
         }
     },
     created(){
-        this.showBtn = this.$store.state.showBtn
+        this.jobId = this.$store.state.job_id
     },
     methods: {
         exist(el){
@@ -78,6 +79,14 @@ export default {
         showList(){
             if(hoverIndex!=-1){
                 document.getElementById()
+            }
+        },
+        show(){
+            if(this.jobId){
+                return false;
+            }
+            else{
+                return true;
             }
         }
     }   
